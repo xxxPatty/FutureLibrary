@@ -8,7 +8,7 @@ Created on Fri Apr 23 22:02:40 2021
 
 
 from flask import Blueprint, jsonify, request
-from models import user, book
+from models import user, book, library
 import json
 from datetime import datetime, timedelta
 #from flask_security import roles_required, login_required
@@ -28,7 +28,7 @@ def register():
     result=user.insert_user(role, email, password, name, phone)
     if result != False: #成功
         return jsonify({'_id':result})
-    else:   #失敗
+    else:   #失敗，註冊過了
         return jsonify({'_id':result})
   
 @library_api.route('login', methods=['get'])   #ok
@@ -80,9 +80,9 @@ def show_book_by_type():
     book_type=request.values.get('book_type')
     return jsonify(book.query_book_by_type(book_type))
     
-@library_api.route('insert_book', methods=['get'])
+@library_api.route('add_book', methods=['get'])
 #新增書
-def insert_book():
+def add_book():
     img=request.values.get('img')
     name=request.values.get('name')
     author=request.values.get('author')
@@ -91,23 +91,140 @@ def insert_book():
     book_id=book.insert_book(img, name, author, type, location)
     return jsonify({'_id':book_id})
     
-@library_api.route('update_book', methods=['get'])
-#編輯書
-def update_book():
-    pass
     
 @library_api.route('delete_book', methods=['get'])
 #刪除書
 def delete_book():
-    pass
+    book_id=request.values.get('book_id')
+    return jsonify({'message':'success'})
     
 @library_api.route('show_book_by_id', methods=['get'])
 #找某本書
 def show_book_by_id():
-    pass
+    book_id=request.values.get('book_id')
+    return jsonify(book.query_book_by_id(book_id))
     
 
 @library_api.route('show_user_by_id', methods=['get'])
 #找某個人
 def show_user_by_id():
-    pass
+    user_id=request.values.get('user_id')
+    return jsonify(user.query_user_by_id(user_id))
+
+@library_api.route('edit_book', methods=['get'])
+#編輯書，只能name author type?
+def edit_book():
+    book_id=request.values.get('book_id')
+    name=request.values.get('name')
+    author=request.values.get('author')
+    type=request.values.get('type')
+    book.update_book_info(book_id, name, author, type)
+    return jsonify({'message':'success'})
+    
+@library_api.route('edit_user_favorite', methods=['get'])
+#編輯使用者書單
+def edit_user_favorite():
+    user_id=request.values.get('user_id')
+    book_id=request.values.get('book_id')
+    user.update_user_favorite(user_id, book_id)
+    return jsonify({'message':'success'})
+    
+@library_api.route('show_user_borrowed', methods=['get'])
+#顯示使用者借過的書
+def show_user_borrowed():
+    user_id=request.values.get('user_id')
+    book=[]
+    for i in user.query_user_by_id(user_id)['borrowed']:
+        book.append(book.query_book_by_id(i))
+    return jsonify(book)
+    
+@library_api.route('show_user_borrowing', methods=['get'])
+#顯示使用者正在借的書
+def show_user_borrowing():
+    user_id=request.values.get('user_id')
+    book=[]
+    for i in user.query_user_by_id(user_id)['borrowing']:
+        book.append(book.query_book_by_id(i))
+    return jsonify(book)
+    
+@library_api.route('show_user_favorite', methods=['get'])
+#顯示使用者書單
+def show_user_favorite():
+    user_id=request.values.get('user_id')
+    book=[]
+    for i in user.query_user_by_id(user_id)['favorite']:
+        book.append(book.query_book_by_id(i))
+    return jsonify(book)
+    
+@library_api.route('show_new_book', methods=['get'])
+#新書列表
+def show_new_book():
+        return jsonify(book.query_sorted_book_by_time())
+
+@library_api.route('show_library', methods=['get'])
+#顯示圖書館資訊
+def show_library():
+    return jsonify(library.query_library('012345'))
+    
+#慢慢載入書---------------------------------------------
+
+
+@library_api.route('show_all_books_one_page', methods=['get'])
+#顯示所有書
+def show_all_books_one_page():
+    page=request.values.get('page')
+    page_num=20
+    return jsonify(book.query_all_books_one_page(page, page_num))
+    
+@library_api.route('show_book_by_name_one_page', methods=['get'])
+#顯示特定書名的書
+def show_book_by_name_one_page():
+    book_name=request.values.get('book_name')
+    page=request.values.get('page')
+    page_num=20
+    return jsonify(book.query_book_by_name_one_page(book_name, page, page_num))
+    
+@library_api.route('show_book_by_type_one_page', methods=['get'])
+#顯示特定類型的書
+def show_book_by_type_one_page():
+    book_type=request.values.get('book_type')
+    page=request.values.get('page')
+    page_num=20
+    return jsonify(book.query_book_by_type_one_page(book_type, page, page_num))
+    
+    
+    
+#undone
+@library_api.route('show_user_borrowed_one_page', methods=['get'])
+#顯示使用者借過的書
+def show_user_borrowed_one_page():
+    user_id=request.values.get('user_id')
+    page=request.values.get('page')
+    page_num=20
+    book=[]
+    for i in user.query_user_by_id(user_id)['borrowed']:
+        book.append(book.query_book_by_id(i))
+    return jsonify(book)
+    
+@library_api.route('show_user_borrowing_one_page', methods=['get'])
+#顯示使用者正在借的書
+def show_user_borrowing_one_page():
+    user_id=request.values.get('user_id')
+    page=request.values.get('page')
+    page_num=20
+    book=[]
+    for i in user.query_user_by_id(user_id)['borrowing']:
+        book.append(book.query_book_by_id(i))
+    return jsonify(book)
+    
+@library_api.route('show_user_favorite_one_page', methods=['get'])
+#顯示使用者書單
+def show_user_favorite_one_page():
+    user_id=request.values.get('user_id')
+    page=request.values.get('page')
+    page_num=20
+    book=[]
+    for i in user.query_user_by_id(user_id)['favorite']:
+        book.append(book.query_book_by_id(i))
+    return jsonify(book)
+    
