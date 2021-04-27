@@ -36,3 +36,8 @@ def update_user_return_book(user_id, book_id):
     
 
 
+def query_user_by_id(user_id):
+    return _db.USER_COLLECTION.find_one({'_id':user_id}).pretty()
+    
+def update_user_favorite(user_id, book_id):
+    _db.USER_COLLECTION.update({'_id':user_id}, {'$push':{'favorite':book_id}})
