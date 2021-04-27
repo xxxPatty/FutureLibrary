@@ -13,7 +13,7 @@ def insert_user(role, email, password, name, phone):
     if _db.USER_COLLECTION.find({'email':email}).count() != 0:  #註冊過
         return False
     #取得目前user數量
-    user_id = "U-" + str(_db.USER_COLLECTION.find().count()).zfill(5) 
+    user_id = 'U-' + str(_db.USER_COLLECTION.find().count()).zfill(5)
     userdict={'_id':user_id, 'email':email, 'password':password, 'name':name, 'phone':phone, 'borrowed':[], 'borrowing':[], 'favorite':[]}
     _db.USER_COLLECTION.insert_one(userdict)
     return user_id
@@ -25,3 +25,14 @@ def find_user(email, password):
         return data[0]['_id']
     else:
         return False
+        
+#借書
+def update_user_borrow_book(user_id, book_id):
+    _db.USER_COLLECTION.update({'_id':user_id}, {'$push':{'borrowing':book_id}})
+#還書
+def update_user_return_book(user_id, book_id):
+    _db.USER_COLLECTION.update({'_id':user_id}, {'$pull':{'borrowing':book_id}})
+    _db.USER_COLLECTION.update({'_id':user_id}, {'$push':{'borrowed':book_id}})
+    
+
+
