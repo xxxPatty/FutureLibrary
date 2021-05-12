@@ -13,7 +13,6 @@ import json
 from datetime import datetime, timedelta
 #from flask_security import roles_required, login_required
 
-
 library_api=Blueprint('library_api', __name__)
 
 
@@ -228,3 +227,10 @@ def show_user_favorite_one_page():
         book.append(book.query_book_by_id(i))
     return jsonify(book)
     
+@library_api.route('upload_image', methods=['post'])
+#上傳照片
+def upload_image():
+    book_img_json=request.get_json()
+    base64_str=book_img_json['base64_str']
+    insert_book_image(base64_str)
+    return jsonify({'message':'success'})
