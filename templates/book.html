@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+        <!-- Title  -->
+        <title>book</title>
+
+        <!-- Favicon  -->
+        <link rel="icon" href="img/core-img/favicon.ico">
+
+        <!-- Style CSS -->
+        <link rel="stylesheet" href="../static/assets/css/style.css">
+        <link rel="stylesheet" href="../static/assets/css/book_style.css">
+    </head>
+
+    
+    <body>
+        <div class="hero-area">
+            <div class="hero-content equalize">
+                <!-- 查詢區塊開始 -->
+                <section class="sonar-contact-area section-padding-75">
+                        <!-- back end content -->
+                    <div class="backEnd-content">
+                        <img class="dots" src="../static/img/core-img/dots.png" style="max-width: 100px;" alt="">
+                    </div>
+
+                    <div class="container">
+                        <div class="row"> 
+                            <div class="col-12">
+                                <div class="contact-form text-center">
+                                    <form action="#" method="post">
+
+                                        <div class="row">
+                                            <div class="col-12 col-md-1"></div>
+                                            <div class="col-12 col-md-4">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" id="bookname" placeholder="書名">
+                                                </div>
+                                            </div>
+                                            <button type="button" class="btn sonar-btn col-12 col-md-2" onclick="lookup_book()">查詢</button>
+                                            <div class="col-12 col-md-2"></div>
+                                            <button type="button" class="btn sonar-btn col-12 col-md-2" onclick="add_book()">新增書籍</button>
+                                            
+                                        </div> 
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- 查詢區塊結束 -->
+                
+                <!-- 顯示書籍開始 -->
+                
+
+                            <!-- Blog Area Start -->
+    <div class="alime-blog-area section-padding-80-0 mb-70">
+        <div class="container">
+            <div class="row">
+
+                <!-- Single Blog Area -->
+                <div class="col-12 col-lg-6">
+                    <div class="single-post-area wow fadeInUpBig" data-wow-delay="100ms">
+                        <!-- Post Thumbnail -->
+                        <a href="#" class="post-thumbnail"><img src="../static/img/bg-img/51.jpg" alt=""></a>
+                        <!-- Post Catagory -->
+                        <button class="btn post-catagory" id="B-90801" style="color: white" onclick="get_id(this)">管理</button>
+                        <!-- Post Conetent -->
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span>作者 | </span>
+                                <span>類型</span>
+                            </div>
+                            <span class="post-title">書名1</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Single Blog Area -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="single-post-area wow fadeInUpBig" data-wow-delay="400ms">
+                        <!-- Post Thumbnail -->
+                        <a href="#" class="post-thumbnail"><img src="../static/img/bg-img/52.jpg" alt=""></a>
+                        <!-- Post Catagory -->
+                        <a href="#" class="btn post-catagory">管理</a>
+                        <!-- Post Conetent -->
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span>作者 | </span>
+                                <span>類型</span>
+                            </div>
+                            <span class="post-title">書名2</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Single Blog Area -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="single-post-area wow fadeInUpBig" data-wow-delay="700ms">
+                        <!-- Post Thumbnail -->
+                        <a href="#" class="post-thumbnail"><img src="../static/img/bg-img/53.jpg" alt=""></a>
+                        <!-- Post Catagory -->
+                        <button class="btn post-catagory">管理</button>
+                        <!-- Post Conetent -->
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span>作者 | </span>
+                                <span>類型</span>
+                            </div>
+                            <span class="post-title">書名3</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Single Blog Area -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="single-post-area wow fadeInUpBig" data-wow-delay="100ms">
+                        <!-- Post Thumbnail -->
+                        <a href="#" class="post-thumbnail"><img src="../static/img/bg-img/54.jpg" alt=""></a>
+                        <!-- Post Catagory -->
+                        <a href="#" class="btn post-catagory">管理</a>
+                        <!-- Post Conetent -->
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span>作者 | </span>
+                                <span>類型</span>
+                            </div>
+                            <span class="post-title">書名4</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Single Blog Area -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="single-post-area wow fadeInUpBig" data-wow-delay="400ms">
+                        <!-- Post Thumbnail -->
+                        <a href="#" class="post-thumbnail"><img src="../static/img/bg-img/55.jpg" alt=""></a>
+                        <!-- Post Catagory -->
+                        <a href="#" class="btn post-catagory">管理</a>
+                        <!-- Post Conetent -->
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span>作者 | </span>
+                                <span>類型</span>
+                            </div>
+                            <span class="post-title">書名5</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Single Blog Area -->
+                <div class="col-12 col-lg-6">
+                    <div class="single-post-area wow fadeInUpBig" data-wow-delay="700ms">
+                        <!-- Post Thumbnail -->
+                        <a href="#" class="post-thumbnail"><img src="../static/img/bg-img/56.jpg" alt=""></a>
+                        <!-- Post Catagory -->
+                        <a href="#" class="btn post-catagory">管理</a>
+                        <!-- Post Conetent -->
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span>作者 | </span>
+                                <span>類型</span>
+                            </div>
+                            <a href="#" class="post-title">書名6</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Single Blog Area -->
+
+            </div>
+        </div>
+    </div>
+    <!-- Blog Area End -->
+
+    <!-- 書籍顯示結束 -->
+
+            <div class="grids d-flex justify-content-between">
+                <div class="grid1"></div>
+                <div class="grid2"></div>
+                <div class="grid3"></div>
+                <div class="grid4"></div>
+                <div class="grid5"></div>
+                <div class="grid6"></div>
+                <div class="grid7"></div>
+                <div class="grid8"></div>
+                <div class="grid9"></div>
+            </div>
+        
+            </div>
+        </div>
+        
+        <!-- menubar start -->
+        <div class="mainMenu d-flex align-items-center justify-content-between">
+            <!-- Close Icon -->
+            <div class="closeIcon">
+                <i class="ti-close" aria-hidden="true"></i>
+            </div>
+            <!-- Logo Area -->
+            <div class="logo-area">
+                <a href="index.html">Future Library</a>
+            </div>
+            <!-- Nav -->
+            <div class="sonarNav">
+                <nav>
+                    <ul>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="index.html">首頁</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about-me.html">已借出</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="services.html">待歸還</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="portfolio.html">查詢書籍</a>
+                        </li>
+                        <!-- 只有使用者才有 -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="blog.html">書籍管理</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="login.html">登出</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- 為了排版 -->
+            <div class="copywrite-text">
+            </div>
+        </div>
+        <!-- ***** Main Menu Area End ***** -->
+
+        <!-- ***** Header Area Start ***** -->
+        <header class="header-area">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="menu-area d-flex justify-content-between">
+                            <!-- Logo Area  -->
+                            <div class="logo-area">
+                                <a href="index.html">Future Library</a>
+                                <h2 style="color: white">書籍管理</h2>
+                            </div>
+
+                            <div class="menu-content-area d-flex align-items-center">
+                                <!-- Menu Icon -->
+                                <span class="navbar-toggler-icon" id="menuIcon"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <!-- menubar end -->
+        
+        <!-- jQuery (Necessary for All JavaScript Plugins) -->
+        <script src="../static/assets/js/jquery/jquery-2.2.4.min.js"></script>
+        <!-- Popper js -->
+        <script src="../static/assets/js/popper.min.js"></script>
+        <!-- Bootstrap js -->
+        <script src="../static/assets/js/bootstrap.min.js"></script>
+        <!-- Plugins js -->
+<!--        <script src="js/plugins.js"></script>-->
+        <!-- Active js -->
+        <script src="../static/assets/js/active.js"></script>
+        <!-- 自己的js -->
+        <script src="../static/assets/js/book.js"></script>
+        <!-- All Plugins -->
+        <script src="../static/assets/js/alime.bundle.js"></script>
+        <!-- Active -->
+        <script src="../static/assets/js/default-assets/active.js"></script>
+    </body>
+
+</html>
