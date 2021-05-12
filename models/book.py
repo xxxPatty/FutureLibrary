@@ -7,6 +7,8 @@ Created on Fri Apr 23 21:52:20 2021
 """
 from . import _db
 from datetime import datetime
+from gridfs import GridFS
+import base64
 
 #借書
 def update_book_borrow_book(book_id, borrow_info_dict, returned_time):
@@ -60,3 +62,12 @@ def update_book_info(book_id, name, author, type):
 #新書
 def query_sorted_book_by_time():
     return [{'_id':i['_id'], 'book_info':i['book_info'], 'location':i['location'], 'time':i['time'], 'borrow_infos':i['borrow_infos'], 'returned_time':i['returned_time']} for i in _db.BOOK_COLLECTION.find().sort('time', -1).pretty()]
+
+
+#上傳照片
+def insert_book_image(base64_str):
+    image_string = base64.b64encode(base64_str)
+    # create Gridfs instance
+    fs = gridfs.GridFS(_db)
+    # add the image to your database
+    put_image = fs.put(image_string)
