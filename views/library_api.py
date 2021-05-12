@@ -13,7 +13,6 @@ import json
 from datetime import datetime, timedelta
 #from flask_security import roles_required, login_required
 
-
 library_api=Blueprint('library_api', __name__)
 
 
@@ -80,14 +79,15 @@ def show_book_by_type():
     book_type=request.values.get('book_type')
     return jsonify(book.query_book_by_type(book_type))
     
-@library_api.route('add_book', methods=['get'])
+@library_api.route('add_book', methods=['post'])
 #新增書
 def add_book():
-    img=request.values.get('img')
-    name=request.values.get('name')
-    author=request.values.get('author')
-    type=request.values.get('type')
-    location=request.values.get('location')
+    book_json=request.get_json()
+    img=book_json['img']
+    name=book_json['name']
+    author=book_json['author']
+    type=book_json['type']
+    location=book_json['location']
     book_id=book.insert_book(img, name, author, type, location)
     return jsonify({'_id':book_id})
     
@@ -228,3 +228,10 @@ def show_user_favorite_one_page():
         book.append(book.query_book_by_id(i))
     return jsonify(book)
     
+#@library_api.route('upload_image', methods=['post'])
+#上傳照片
+#def upload_image():
+    #book_img_json=request.get_json()
+    #base64_str=book_img_json['base64_str']
+    #book.insert_book_image(base64_str)
+    #return jsonify({'message':'success'})
