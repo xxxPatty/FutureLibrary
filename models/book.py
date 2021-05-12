@@ -40,7 +40,7 @@ def insert_book(img, name, author, type, location):
     #產生id
     data=_db.BOOK_COLLECTION.find()
     if data.count() != 0:
-        book_id='B-'+str(int(data.sort('-id', -1)[0]['_id'].split('-')[1])+1).zfill(5)
+        book_id='B-'+str(int(data.sort('_id', -1)[0]['_id'].split('-')[1])+1).zfill(5)
     else:
         book_id='B-00000'
     book_dict={'_id':book_id, 'book_info':{'img':img, 'name':name, 'author':author, 'type':type}, 'location':location, 'time':datetime.now(), 'borrow_infos':[], 'returned_time':None}
@@ -65,9 +65,9 @@ def query_sorted_book_by_time():
 
 
 #上傳照片
-def insert_book_image(base64_str):
-    image_string = base64.b64encode(base64_str)
+#def insert_book_image(base64_str):
+    #image_string = base64.b64encode(base64_str)
     # create Gridfs instance
-    fs = gridfs.GridFS(_db)
+    #fs = gridfs.GridFS(_db)
     # add the image to your database
-    put_image = fs.put(image_string)
+    #put_image = fs.put(image_string)
