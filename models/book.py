@@ -65,9 +65,9 @@ def query_sorted_book_by_time():
 
 
 #上傳照片
-def insert_book_image(base64_str):
-    image_string = base64.b64encode(base64_str)
+#def insert_book_image(base64_str):
+    #image_string = base64.b64encode(base64_str)
     # create Gridfs instance
-    fs = gridfs.GridFS(_db)
+    #fs = gridfs.GridFS(_db)
     # add the image to your database
-    put_image = fs.put(image_string)
+    #put_image = fs.put(image_string)
