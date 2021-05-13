@@ -12,108 +12,13 @@
         <title>register</title>
 
         <!-- Favicon  -->
-        <link rel="icon" href="img/core-img/favicon.ico">
+        <link rel="icon" href="../static/img/core-img/favicon.ico">
 
         <!-- Style CSS -->
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="../static/assets/css/style.css">
     </head>
     
     <body>
-        <div class="hero-area">
-            <div class="hero-content equalize">
-                
-            <!--輸入框＆button-->
-            <section class="sonar-contact-area">
-            <!-- back end content -->
-                <div class="backEnd-content">
-                    <img class="dots" src="img/core-img/dots.png" alt="">
-                </div>
-
-                <div class="container">
-                    <div class="row">
-                        <!-- Contact Form Area -->
-                        <div class="col-12">
-                            <div class="contact-form text-center">
-
-                                <h2>Register</h2>
-        <!--                        <h4>Let’s talk</h4>-->
-                                <form action="#">
-                                    <!-- email -->
-                                    <div class="row">
-                                        <div class="col-12 col-md-4"></div>
-                                        <div class="col-12 col-md-4">
-                                            <div class="form-group">
-                                                <input type="email" class="form-control" id="contact-email" placeholder="email">
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-md-4"></div>
-                                    </div>
-                                    
-                                    <!-- 密碼 -->
-                                    <div class="row">
-                                        <div class="col-12 col-md-4"></div>
-                                        <div class="col-12 col-md-4">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" id="contact-password" placeholder="password">
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-md-4"></div>
-                                    </div>
-                                    
-                                    <!-- 姓名 -->
-                                    <div class="row">
-                                        <div class="col-12 col-md-4"></div>
-                                        <div class="col-12 col-md-4">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" id="contact-name" placeholder="name">
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-md-4"></div>
-                                    </div>
-                                    
-                                    <!-- 電話 -->
-                                    <div class="row">
-                                        <div class="col-12 col-md-4"></div>
-                                        <div class="col-12 col-md-4">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" id="contact-phone" placeholder="phone">
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-md-4"></div>
-                                    </div>
-                                    
-                                    <!-- 按鈕 -->
-                                    <div class="row">
-                                        <div class="col-12 col-md-4"></div>
-                                        <div class="col-12 col-md-2"></div>
-                                        
-                                        <div class="col-12 col-md-2">
-                                            <button type="button" class="btn sonar-btn" onclick="register()">註冊</button>
-                                        </div>
-                                        
-                                        <div class="col-12 col-md-4"></div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-                
-            <div class="grids d-flex justify-content-between">
-                <div class="grid1"></div>
-                <div class="grid2"></div>
-                <div class="grid3"></div>
-                <div class="grid4"></div>
-                <div class="grid5"></div>
-                <div class="grid6"></div>
-                <div class="grid7"></div>
-                <div class="grid8"></div>
-                <div class="grid9"></div>
-            </div>
-        
-            </div>
-        </div>
         
         <!-- menubar start -->
         <div class="mainMenu d-flex align-items-center justify-content-between">
@@ -143,9 +48,9 @@
             <div class="copywrite-text">
             </div>
         </div>
-        <!-- ***** Main Menu Area End ***** -->
-
-        <!-- ***** Header Area Start ***** -->
+        <!-- menubar end -->
+        
+        <!-- 左上角標題 start -->
         <header class="header-area">
             <div class="container-fluid">
                 <div class="row">
@@ -166,21 +71,132 @@
                 </div>
             </div>
         </header>
+        <!-- 左上角標題 end -->
         
-        <!-- menubar end -->
+        <!-- 主畫面 start -->
+        <div class="hero-area">
+            <div class="hero-content equalize">
+                
+                <!-- 輸入＋按鈕 start -->
+                <section class="sonar-contact-area">
+
+                    <div class="backEnd-content">
+                        <img class="dots" src="../static/img/core-img/dots.png" alt="">
+                    </div>
+
+                    <div class="container">
+                        <div class="row">
+                            <!-- Contact Form Area -->
+                            <div class="col-12">
+                                <div class="contact-form text-center">
+
+                                    <h2>Register</h2>
+
+                                    <!-- 輸入的表單 start -->
+                                    <form action="#">
+                                        <!-- 輸入email start -->
+                                        <div class="row">
+                                            <div class="col-12 col-md-4"></div>
+                                            <div class="col-12 col-md-4">
+                                                <div class="form-group">
+                                                    <input type="email" class="form-control" id="contact-email" placeholder="email">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-4"></div>
+                                        </div>
+                                        <!-- 輸入email end -->
+
+                                        <!-- 輸入密碼 start -->
+                                        <div class="row">
+                                            <div class="col-12 col-md-4"></div>
+                                            <div class="col-12 col-md-4">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" id="contact-password" placeholder="password">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-4"></div>
+                                        </div>
+                                        <!-- 輸入姓名 end -->
+
+                                        <!-- 輸入姓名 start -->
+                                        <div class="row">
+                                            <div class="col-12 col-md-4"></div>
+                                            <div class="col-12 col-md-4">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" id="contact-name" placeholder="name">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-4"></div>
+                                        </div>
+                                        <!-- 輸入姓名 end -->
+
+                                        <!-- 輸入電話 start -->
+                                        <div class="row">
+                                            <div class="col-12 col-md-4"></div>
+                                            <div class="col-12 col-md-4">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" id="contact-phone" placeholder="phone">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-4"></div>
+                                        </div>
+                                        <!-- 輸入電話 end -->
+
+                                        <!-- 註冊按鈕 start -->
+                                        <div class="row">
+                                            <div class="col-12 col-md-4"></div>
+                                            <div class="col-12 col-md-2"></div>
+
+                                            <div class="col-12 col-md-2">
+                                                <button type="button" class="btn sonar-btn" onclick="register()">註冊</button>
+                                            </div>
+
+                                            <div class="col-12 col-md-4"></div>
+                                        </div>
+                                        <!-- 註冊按鈕 end -->
+                                    </form>
+                                    <!-- 輸入的表單 end -->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- 輸入＋按鈕 end -->
+                
+                <!-- 下面的線 start -->
+                <div class="grids d-flex justify-content-between">
+                    <div class="grid1"></div>
+                    <div class="grid2"></div>
+                    <div class="grid3"></div>
+                    <div class="grid4"></div>
+                    <div class="grid5"></div>
+                    <div class="grid6"></div>
+                    <div class="grid7"></div>
+                    <div class="grid8"></div>
+                    <div class="grid9"></div>
+                </div>
+                <!-- 下面的線 end -->
+                
+            </div>
+        </div>
+        <!-- 主畫面 end -->
+        
+
+        
         
         <!-- jQuery (Necessary for All JavaScript Plugins) -->
-        <script src="js/jquery/jquery-2.2.4.min.js"></script>
+        <script src="../static/assets/js/jquery/jquery-2.2.4.min.js"></script>
         <!-- Popper js -->
-        <script src="js/popper.min.js"></script>
+        <script src="../static/assets/js/popper.min.js"></script>
         <!-- Bootstrap js -->
-        <script src="js/bootstrap.min.js"></script>
+        <script src="../static/assets/js/bootstrap.min.js"></script>
         <!-- Plugins js -->
-        <script src="js/plugins.js"></script>
+        <script src="../static/assets/js/plugins.js"></script>
         <!-- Active js -->
-        <script src="js/active.js"></script>
+        <script src="../static/assets/js/active.js"></script>
         <!-- register的js -->
-        <script src="js/register.js"></script>
+        <script src="../static/assets/js/register.js"></script>
     </body>
 
 </html>

@@ -1,32 +1,30 @@
 var ngrok="http://30d2abdc6bba.ngrok.io";
 
 function add_book(){
-    console.log("add_book");
+    window.location.href = 'add_book.html';
 }
 
+//依書名查詢書籍
 function lookup_book(){
-    console.log("lookup_book");
-    var myURL= ngrok;
     
     var bookname = $("#bookname").val();
-    console.log("bookname: "+bookname);
+    var myURL = "http://localhost:5000/show_book_by_name_one_page?book_name="+bookname+"&page=0";
     
-    myURL += "book_name="+bookname;
     console.log("myURL: "+myURL);
     
-    $.ajax({
-        url: myURL,
-        type: "GET",
-        dataType: "json",
-        contentType: 'application/json; charset=utf-8',
-        success: function(response){
-            console.log("success");
-            
-        },
-        error: function(){
-            console.log("error");
-        }
-    });
+//    $.ajax({
+//        url: "",
+//        type: "GET",
+//        dataType: "json",
+//        contentType: 'application/json; charset=utf-8',
+//        success: function(response){
+//            console.log("success");
+//            
+//        },
+//        error: function(){
+//            console.log("error");
+//        }
+//    });
     
 }
 

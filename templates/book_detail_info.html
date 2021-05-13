@@ -16,72 +16,10 @@
 
         <!-- Style CSS -->
         <link rel="stylesheet" href="../static/assets/css/style.css">
-        <link rel="stylesheet" href="../static/assets/css/book_style.css">
     </head>
 
     
     <body>
-        <div class="hero-area">
-            <div class="hero-content equalize">
-                <!-- 顯示書籍開始 -->
-                
-
-                            <!-- Blog Area Start -->
-    <div class="alime-blog-area section-padding-80-0 mb-70">
-        <div class="container">
-            <div class="row">
-
-                <!-- Single Blog Area -->
-                <div class="col-12 col-lg-6">
-                    <!-- 上傳檔案 start -->
-                    <input type="file" id="book_img_btn" accept="image/jpeg, image/png">
-                    <!-- 上傳檔案 end -->
-                    <div class="single-post-area wow fadeInUpBig" data-wow-delay="100ms">
-                        <!-- Post Thumbnail -->
-                        <a href="#" class="post-thumbnail">
-                            <img id="book_img" src="../static/img/bg-img/51.jpg">
-                        </a>
-                        <!-- Post Catagory -->
-                        
-                        <!-- Post Conetent -->
-                        <div class="post-content">
-                            <div class="post-meta">
-                                <span>作者 | </span>
-                                <span>類型</span>
-                            </div>
-                            <span class="post-title">書名1</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Single Blog Area -->
-                
-                <!-- test start -->
-    
-
-                <!-- test end 
-                <button class="btn post-catagory" style="color: white" onclick="upload_img(this)">編輯照片</button>
-                -->
-            </div>
-        </div>
-    </div>
-    <!-- Blog Area End -->
-
-    <!-- 書籍顯示結束 -->
-
-            <div class="grids d-flex justify-content-between">
-                <div class="grid1"></div>
-                <div class="grid2"></div>
-                <div class="grid3"></div>
-                <div class="grid4"></div>
-                <div class="grid5"></div>
-                <div class="grid6"></div>
-                <div class="grid7"></div>
-                <div class="grid8"></div>
-                <div class="grid9"></div>
-            </div>
-        
-            </div>
-        </div>
         
         <!-- menubar start -->
         <div class="mainMenu d-flex align-items-center justify-content-between">
@@ -101,19 +39,11 @@
                             <a class="nav-link" href="index.html">首頁</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="about-me.html">已借出</a>
+                            <a class="nav-link" href="book.html">查詢書籍</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="services.html">待歸還</a>
+                            <a class="nav-link" href="book_detail_info.html">書籍管理</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="portfolio.html">查詢書籍</a>
-                        </li>
-                        <!-- 只有使用者才有 -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="blog.html">書籍管理</a>
-                        </li>
-                        
                         <li class="nav-item">
                             <a class="nav-link" href="login.html">登出</a>
                         </li>
@@ -124,9 +54,9 @@
             <div class="copywrite-text">
             </div>
         </div>
-        <!-- ***** Main Menu Area End ***** -->
+        <!-- menubar end -->
 
-        <!-- ***** Header Area Start ***** -->
+        <!-- 左上角標題 start -->
         <header class="header-area">
             <div class="container-fluid">
                 <div class="row">
@@ -147,8 +77,77 @@
                 </div>
             </div>
         </header>
+        <!-- 左上角標題 end -->
         
-        <!-- menubar end -->
+        <!-- 主畫面 start -->
+        <div class="hero-area">
+            <div class="hero-content equalize">
+
+                <div class="alime-blog-area section-padding-80-0 mb-70">
+                    <div class="container">
+                        <div class="row">
+
+                            <!-- Single Blog Area -->
+                            <div class="col-12 col-lg-6">
+                                <!-- 上傳檔案 start -->
+                                <input type="file" id="book_img_btn" accept="image/jpeg, image/png">
+                                <!-- 上傳檔案 end -->
+                                <div class="single-post-area wow fadeInUpBig" data-wow-delay="100ms">
+                                    <!-- Post Thumbnail -->
+                                    <a href="#" class="post-thumbnail">
+                                        <img id="book_img" src="../static/img/bg-img/51.jpg">
+                                    </a>
+                                    <!-- Post Catagory -->
+
+                                    <!-- Post Conetent -->
+                                    <div class="post-content">
+                                        <div class="post-meta">
+                                            <span>作者 | </span>
+                                            <span>類型</span>
+                                        </div>
+                                        <span class="post-title">書名1</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-form text-center col-12 col-lg-4">
+                                <div class="form-group" style="margin: 40px;">
+                                    <input type="text" class="form-control" id="name" placeholder="書名" value="原本的書名">
+                                </div>
+                                <div class="form-group" style="margin: 40px;">
+                                    <input type="text" class="form-control" id="author" placeholder="作者" value="原本的作者">
+                                </div>
+                                <div class="form-group" style="margin: 40px;">
+                                    <input type="text" class="form-control" id="type" placeholder="種類" value="原本的種類">
+                                </div>
+                                <button type="button" class="btn sonar-btn" style="float: right;" onclick="delete_book()">刪除</button>
+                                <button type="button" class="btn sonar-btn" style="float: right;" onclick="edit_book()">編輯</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <!-- 下面的線 start -->
+                <div class="grids d-flex justify-content-between">
+                    <div class="grid1"></div>
+                    <div class="grid2"></div>
+                    <div class="grid3"></div>
+                    <div class="grid4"></div>
+                    <div class="grid5"></div>
+                    <div class="grid6"></div>
+                    <div class="grid7"></div>
+                    <div class="grid8"></div>
+                    <div class="grid9"></div>
+                </div>
+                <!-- 下面的線 end -->
+        
+            </div>
+        </div>
+        <!-- 主畫面 end -->
+        
+        
         
         <!-- jQuery (Necessary for All JavaScript Plugins) -->
         <script src="../static/assets/js/jquery/jquery-2.2.4.min.js"></script>

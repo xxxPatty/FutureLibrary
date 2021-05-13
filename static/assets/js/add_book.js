@@ -47,25 +47,35 @@ function add_book(){
     var type = $("#type").val();
     var location = $("#location").val();
     
-    var data = {"name" : name, "author" : author, "type" : type, "location" : location, "img" : base64};
     
-    console.log("name: "+data.name);
-    console.log("author: "+data.author);
-    console.log("type: "+data.type);
-    console.log("location: "+data.location);
-    console.log("img: "+data.img);
     
-    $.ajax({
-        url: "http://localhost:5000/add_book",
-        type: "POST",
-        dataType: "json",
-        data: JSON.stringify(data),
-        contentType: 'application/json; charset=utf-8',
-        success: function(response){
-            console.log("success");
-        },
-        error: function(){
-            console.log("error");
-        }
-    });
+//    console.log("name: "+data.name);
+//    console.log("author: "+data.author);
+//    console.log("type: "+data.type);
+//    console.log("location: "+data.location);
+//    console.log("img: "+data.img);
+    
+    if(name!="" && author!="" && type!="" && location!=""){
+        var data = {"name" : name, "author" : author, "type" : type, "location" : location, "img" : base64};
+        
+        $.ajax({
+            url: "http://localhost:5000/add_book",
+            type: "POST",
+            dataType: "json",
+            data: JSON.stringify(data),
+            contentType: 'application/json; charset=utf-8',
+            success: function(response){
+                console.log("success");
+                window.alert("新增成功～");
+                window.location.href = 'book.html';
+            },
+            error: function(){
+                console.log("error");
+                window.alert("新增失敗T^T");
+            }
+        });
+    }
+    else{
+        window.alert("新增失敗T^T\n資料輸入不全...");
+    }
 }
