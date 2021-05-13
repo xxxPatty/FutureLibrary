@@ -9,4 +9,4 @@ from . import _db
 
 
 def query_library(library_id):
-    return _db.LIBRARY_COLLECTION.find_one({'_id':library_id}).pretty()
+    return _db.LIBRARY_COLLECTION.find_one({'_id':library_id})
