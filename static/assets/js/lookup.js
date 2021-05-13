@@ -1,7 +1,7 @@
 var ngrok="http://30d2abdc6bba.ngrok.io";
 
 
-function start(){
+function show_all_books(){
     var content = "";
     
     $.ajax({
@@ -63,11 +63,6 @@ function start(){
     
 }
 
-//跳轉到「新增書籍」的頁面
-function add_book(){
-    window.location.href = 'add_book.html';
-}
-
 //依書名查詢書籍
 function lookup_book(){  
     var bookname = $("#bookname").val();
@@ -93,9 +88,9 @@ function lookup_book(){
                         content += response[i].book_info.img;
                         content += '" alt=""></a>';
                         
-                        content += '<button class="btn post-catagory" id="';
-                        content += response[i]._id;
-                        content += '" style="color: white" onclick="get_id(this)">管理</button>';
+//                        content += '<button class="btn post-catagory" id="';
+//                        content += response[i]._id;
+//                        content += '" style="color: white" onclick="get_id(this)">管理</button>';
                         
                         content += '<div class="post-content">';
                             content += '<div class="post-meta">';
@@ -118,17 +113,16 @@ function lookup_book(){
         error: function(){
             console.log("error");
         }
-    });
-    
+    }); 
 }
 
 
-function get_id(e){
-    console.log("開始拿ID");
-    var book_id = e.getAttribute("id");
-    console.log("拿到的id: "+book_id);
-    localStorage.setItem('book_id', book_id);
-    window.location.href = 'book_detail_info.html';
-}
+//function get_id(e){
+//    console.log("開始拿ID");
+//    var book_id = e.getAttribute("id");
+//    console.log("拿到的id: "+book_id);
+//    localStorage.setItem('book_id', book_id);
+//    window.location.href = 'book_detail_info.html';
+//}
 
-window.addEventListener("load", start, false);
+window.addEventListener("load", show_all_books, false);

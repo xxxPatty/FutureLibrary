@@ -40,12 +40,14 @@
                             <a class="nav-link" href="index.html">首頁</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="portfolio.html">查詢書籍</a>
+                            <a class="nav-link" href="blog.html">已借出</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="blog.html">書籍管理</a>
+                            <a class="nav-link" href="blog.html">待歸還</a>
                         </li>
-                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="portfolio.html">查詢書籍</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="login.html">登出</a>
                         </li>
@@ -67,7 +69,7 @@
                             <!-- Logo Area  -->
                             <div class="logo-area">
                                 <a href="index.html">Future Library</a>
-                                <h2 style="color: white">書籍管理</h2>
+                                <h2 style="color: white">查詢書籍</h2>
                             </div>
 
                             <div class="menu-content-area d-flex align-items-center">
@@ -96,19 +98,45 @@
                             <div class="col-12">
                                 <div class="contact-form text-center">
                                     <form action="#" method="post">
-
+                                        <!-- 依書名查詢 start -->
                                         <div class="row">
-                                            <div class="col-12 col-md-1"></div>
+                                            <div class="col-12 col-md-3"></div>
                                             <div class="col-12 col-md-4">
                                                 <div class="form-group">
                                                     <input type="text" class="form-control" id="bookname" placeholder="書名">
                                                 </div>
                                             </div>
-                                            <button type="button" class="btn sonar-btn col-12 col-md-2" onclick="lookup_book()">查詢</button>
-                                            <div class="col-12 col-md-2"></div>
-                                            <button type="button" class="btn sonar-btn col-12 col-md-2" onclick="add_book()">新增書籍</button>
-                                            
+                                            <button type="button" class="btn sonar-btn col-12 col-md-2" onclick="lookup_book()">書名查詢</button>
+                                            <div class="col-12 col-md-3"></div>
                                         </div> 
+                                        <!-- 依書名查詢 end -->
+                                        
+                                        <!-- 依種類查詢 start -->
+                                        <div class="row">
+                                            <div class="col-12 col-md-3"></div>
+                                            <div class="col-12 col-md-4">
+                                                <div class="form-group">
+<!--                                                    <input type="text" class="form-control" id="bookname" placeholder="種類">-->
+                                                    <select class="form-control">
+                                                        <option>種類1</option>
+                                                        <option selected="selected">種類2</option>
+                                                        <option>種類3</option>
+                                                        <option>種類4</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <button type="button" class="btn sonar-btn col-12 col-md-2" onclick="lookup_book()">種類查詢</button>
+                                            <div class="col-12 col-md-3"></div>
+                                        </div>
+                                        <!-- 依種類查詢 end -->
+                                        
+                                        <!-- 顯示全部 start -->
+                                        <div class="row">
+                                            <div class="col-12 col-md-7"></div>
+                                            <button type="button" class="btn sonar-btn col-12 col-md-2" style="margin-top: 20px;" onclick="show_all_books()">顯示全部</button>
+                                            <div class="col-12 col-md-3"></div>
+                                        </div>
+                                        <!-- 顯示全部 end -->
                                     </form>
                                 </div>
                             </div>
@@ -163,7 +191,7 @@
         <!-- Active js -->
         <script src="../static/assets/js/active.js"></script>
         <!-- 自己的js -->
-        <script src="../static/assets/js/book.js"></script>
+        <script src="../static/assets/js/lookup.js"></script>
         <!-- All Plugins -->
         <script src="../static/assets/js/alime.bundle.js"></script>
         <!-- Active -->

@@ -87,42 +87,34 @@
                     <div class="container">
                         <div class="row">
 
-                            <!-- Single Blog Area -->
-                            <div class="col-12 col-lg-6">
+                            <!-- 照片 start -->
+                            <div class="col-12 col-lg-6" >
                                 <!-- 上傳檔案 start -->
-                                <input type="file" id="book_img_btn" accept="image/jpeg, image/png">
+                                <input type="file" id="book_img_btn" accept="image/jpeg, image/png" style="float: right;">
                                 <!-- 上傳檔案 end -->
-                                <div class="single-post-area wow fadeInUpBig" data-wow-delay="100ms">
-                                    <!-- Post Thumbnail -->
-                                    <a href="#" class="post-thumbnail">
-                                        <img id="book_img" src="../static/img/bg-img/51.jpg">
+                                
+                                <div class="single-post-area wow fadeInUpBig" data-wow-delay="100ms" style="width: 300px; float: right;">
+                                    <a href="#" class="post-thumbnail" id="show_book">
+                                        
                                     </a>
-                                    <!-- Post Catagory -->
-
-                                    <!-- Post Conetent -->
-                                    <div class="post-content">
-                                        <div class="post-meta">
-                                            <span>作者 | </span>
-                                            <span>類型</span>
-                                        </div>
-                                        <span class="post-title">書名1</span>
-                                    </div>
                                 </div>
                             </div>
+                            <!-- 照片 end -->
                             
+                            <!-- input＆按鈕 start -->
                             <div class="contact-form text-center col-12 col-lg-4">
-                                <div class="form-group" style="margin: 40px;">
-                                    <input type="text" class="form-control" id="name" placeholder="書名" value="原本的書名">
+                                <!-- 供使用者輸入的input start -->
+                                <div id="show_original_info">
+                                    
                                 </div>
-                                <div class="form-group" style="margin: 40px;">
-                                    <input type="text" class="form-control" id="author" placeholder="作者" value="原本的作者">
-                                </div>
-                                <div class="form-group" style="margin: 40px;">
-                                    <input type="text" class="form-control" id="type" placeholder="種類" value="原本的種類">
-                                </div>
+                                <!-- 供使用者輸入的input end -->
+                                
+                                <!-- 刪除＆編輯按鈕 start -->
                                 <button type="button" class="btn sonar-btn" style="float: right;" onclick="delete_book()">刪除</button>
                                 <button type="button" class="btn sonar-btn" style="float: right;" onclick="edit_book()">編輯</button>
+                                <!-- 刪除＆編輯按鈕 end -->
                             </div>
+                            <!-- input＆按鈕 end -->
 
                         </div>
                     </div>
