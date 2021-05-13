@@ -7,8 +7,6 @@ Created on Fri Apr 23 21:52:20 2021
 """
 from . import _db
 from datetime import datetime
-from gridfs import GridFS
-import base64
 
 #借書
 def update_book_borrow_book(book_id, borrow_info_dict, returned_time):
@@ -16,25 +14,25 @@ def update_book_borrow_book(book_id, borrow_info_dict, returned_time):
     _db.BOOK_COLLECTION.update({'_id':book_id}, {'$set':{'returned_time':returned_time}})
     
 def query_all_books():
-    return [{'_id':i['_id'], 'book_info':i['book_info'], 'location':i['location'], 'time':i['time'], 'borrow_infos':i['borrow_infos'], 'returned_time':i['returned_time']} for i in _db.BOOK_COLLECTION.find().pretty()]
+    return [{'_id':i['_id'], 'book_info':i['book_info'], 'location':i['location'], 'time':i['time'], 'borrow_infos':i['borrow_infos'], 'returned_time':i['returned_time']} for i in _db.BOOK_COLLECTION.find()]
     
 def query_all_books_one_page(page, page_num):
-    return [{'_id':i['_id'], 'book_info':i['book_info'], 'location':i['location'], 'time':i['time'], 'borrow_infos':i['borrow_infos'], 'returned_time':i['returned_time']} for i in _db.BOOK_COLLECTION.find().skip(page*page_num).limit(page_num).pretty()]
+    return [{'_id':i['_id'], 'book_info':i['book_info'], 'location':i['location'], 'time':i['time'], 'borrow_infos':i['borrow_infos'], 'returned_time':i['returned_time']} for i in _db.BOOK_COLLECTION.find().skip(page*page_num).limit(page_num)]
     
 def query_book_by_name(book_name):
-    return [{'_id':i['_id'], 'book_info':i['book_info'], 'location':i['location'], 'time':i['time'], 'borrow_infos':i['borrow_infos'], 'returned_time':i['returned_time']} for i in _db.BOOK_COLLECTION.find({'book_info.name':book_name}).pretty()]
+    return [{'_id':i['_id'], 'book_info':i['book_info'], 'location':i['location'], 'time':i['time'], 'borrow_infos':i['borrow_infos'], 'returned_time':i['returned_time']} for i in _db.BOOK_COLLECTION.find({'book_info.name':book_name})]
     
 def query_book_by_name_one_page(book_name, page, page_num):
-    return [{'_id':i['_id'], 'book_info':i['book_info'], 'location':i['location'], 'time':i['time'], 'borrow_infos':i['borrow_infos'], 'returned_time':i['returned_time']} for i in _db.BOOK_COLLECTION.find({'book_info.name':book_name}).skip(page*page_num).limit(page_num).pretty()]
+    return [{'_id':i['_id'], 'book_info':i['book_info'], 'location':i['location'], 'time':i['time'], 'borrow_infos':i['borrow_infos'], 'returned_time':i['returned_time']} for i in _db.BOOK_COLLECTION.find({'book_info.name':book_name}).skip(page*page_num).limit(page_num)]
     
 def query_book_by_type(book_type):
-    return [{'_id':i['_id'], 'book_info':i['book_info'], 'location':i['location'], 'time':i['time'], 'borrow_infos':i['borrow_infos'], 'returned_time':i['returned_time']} for i in _db.BOOK_COLLECTION.find({'book_info.type':book_type}).pretty()]
+    return [{'_id':i['_id'], 'book_info':i['book_info'], 'location':i['location'], 'time':i['time'], 'borrow_infos':i['borrow_infos'], 'returned_time':i['returned_time']} for i in _db.BOOK_COLLECTION.find({'book_info.type':book_type})]
 
 def query_book_by_type_one_page(book_type, page, page_num):
-    return [{'_id':i['_id'], 'book_info':i['book_info'], 'location':i['location'], 'time':i['time'], 'borrow_infos':i['borrow_infos'], 'returned_time':i['returned_time']} for i in _db.BOOK_COLLECTION.find({'book_info.type':book_type}).skip(page*page_num).limit(page_num).pretty()]
+    return [{'_id':i['_id'], 'book_info':i['book_info'], 'location':i['location'], 'time':i['time'], 'borrow_infos':i['borrow_infos'], 'returned_time':i['returned_time']} for i in _db.BOOK_COLLECTION.find({'book_info.type':book_type}).skip(page*page_num).limit(page_num)]
     
 def query_book_by_id(book_id):
-    return _db.BOOK_COLLECTION.find_one({'_id':book_id}).pretty()
+    return _db.BOOK_COLLECTION.find_one({'_id':book_id})
 
 def insert_book(img, name, author, type, location):
     #產生id
@@ -61,7 +59,7 @@ def update_book_info(book_id, name, author, type):
 
 #新書
 def query_sorted_book_by_time():
-    return [{'_id':i['_id'], 'book_info':i['book_info'], 'location':i['location'], 'time':i['time'], 'borrow_infos':i['borrow_infos'], 'returned_time':i['returned_time']} for i in _db.BOOK_COLLECTION.find().sort('time', -1).pretty()]
+    return [{'_id':i['_id'], 'book_info':i['book_info'], 'location':i['location'], 'time':i['time'], 'borrow_infos':i['borrow_infos'], 'returned_time':i['returned_time']} for i in _db.BOOK_COLLECTION.find().sort('time', -1)]
 
 
 #上傳照片
