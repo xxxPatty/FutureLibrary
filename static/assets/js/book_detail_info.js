@@ -1,10 +1,11 @@
+var type = ["文學小說", "商業理財", "藝術設計", "人文史地", "社會科學", "自然科普", "心理勵志", "醫療保健", "飲食", "生活風格", "旅遊", "宗教命理", "親子教養", "童書/青少年文學", "影視偶像", "輕小說", "漫畫/圖文書", "語言學習", "考試用書", "電腦資訊", "專業/教科書/政府出版品", "參考書"];
+
 function start(){
+    //編輯書籍內容 start
     var content = "";
     var img_base64 = "";
     var book_id = localStorage.getItem("book_id");
     var myURL = "http://localhost:5000/show_book_by_id?book_id="+book_id;
-    
-    
     
     $.ajax({
         url: myURL,
@@ -32,10 +33,21 @@ function start(){
                 content += response.book_info.author;
                 content += '">';
             content += '</div>';
-            content += '<div class="form-group" style="margin: 40px;">';
-                content += '<input type="text" class="form-control" id="type" placeholder="種類" value="';
-                content += response.book_info.type;
-                content += '">';
+            content += '<div class="form-group"  style="margin: 40px;">';
+                content += '<select class="form-control" id="type">';
+                    for(var i=0; i<type.length; i++){
+                        if(response.book_info.type == type[i]){
+                            content += '<option selected="selected">';
+                            content += response.book_info.type;
+                            content += '</option>';
+                        }
+                        else{
+                            content += '<option>';
+                            content += type[i];
+                            content += '</option>';
+                        }
+                    }
+                content += '</select>';
             content += '</div>';
             
             document.getElementById("show_original_info").innerHTML = content;
@@ -45,6 +57,11 @@ function start(){
             console.log("error");
         }
     });
+    //編輯書籍內容 end
+    
+    //借閱資料內容 start
+    
+    //借閱資料內容 end
 }
 
 $("#book_img_btn").change(function(){
@@ -91,20 +108,19 @@ function readURL(input){
 //編輯書籍
 function edit_book(){
     
-    var id = "還沒寫";
+    var id = localStorage.getItem("book_id");
     var name = $("#name").val();
     var author = $("#author").val();
     var type = $("#type").val();
     
-//    console.log("id: "+id);
-//    console.log("name: "+data.name);
-//    console.log("author: "+data.author);
-//    console.log("type: "+data.type);
+    console.log("id: "+id);
+    console.log("name: "+name);
+    console.log("author: "+author);
+    console.log("type: "+type);
     
-    if(name!="" && author!="" && type!=""){
-//        var data = {"name" : name, "author" : author, "type" : type, "location" : location, "img" : base64};
-        
+    if(name!="" && author!="" && type!=""){ 
         var myURL = "http://localhost:5000/edit_book?book_id="+id+"&name="+name+"&author="+author+"&type="+type;
+        console.log("送出的URL: "+myURL);
         
         $.ajax({
             url: myURL,
@@ -113,8 +129,14 @@ function edit_book(){
             contentType: 'application/json; charset=utf-8',
             success: function(response){
                 console.log("success");
-                window.alert("編輯成功～");
-                window.location.href = 'book.html';
+                if(response.message == "success"){
+                    window.alert("編輯成功～");
+                    window.location.href = 'book.html';
+                }
+                else{
+                    console.log("error");
+                    window.alert("編輯失敗T^T");
+                }
             },
             error: function(){
                 console.log("error");
@@ -129,6 +151,43 @@ function edit_book(){
 
 //刪除書籍
 function delete_book(){
+    console.log("刪除中...");
+    var id = localStorage.getItem("book_id");
+    var myURL = "http://localhost:5000/delete_book?book_id="+id;
+    console.log("myURL: "+myURL);
+    
+    $.ajax({
+        url: myURL,
+        type: "GET",
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function(response){
+            console.log("success");
+            if(response.message == "success"){
+                window.alert("刪除成功～");
+                window.location.href = 'book.html';
+            }
+            else{
+                console.log("error");
+                window.alert("刪除失敗T^T");
+            }
+        },
+        error: function(){
+            console.log("error");
+            window.alert("編輯失敗T^T");
+        }
+    });
+}
+
+function return_book(e){
+    console.log("開始還書");
+//    var book_id = e.getAttribute("id");
+//    console.log("拿到的id: "+book_id);
+//    localStorage.setItem('book_id', book_id);
+//    window.location.href = 'book_detail_info.html';
+}
+
+function add_borrow_info(){
     
 }
 

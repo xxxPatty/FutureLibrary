@@ -2,6 +2,7 @@ var ngrok="http://30d2abdc6bba.ngrok.io";
 
 
 function show_all_books(){
+    console.log("start");
     var content = "";
     
     $.ajax({
@@ -29,10 +30,6 @@ function show_all_books(){
                         content += '<a href="#" class="post-thumbnail"><img src="';
                         content += response[i].book_info.img;
                         content += '" alt=""></a>';
-                        
-                        content += '<button class="btn post-catagory" id="';
-                        content += response[i]._id;
-                        content += '" style="color: white" onclick="get_id(this)">管理</button>';
                         
                         content += '<div class="post-content">';
                             content += '<div class="post-meta">';
@@ -64,7 +61,7 @@ function show_all_books(){
 }
 
 //依書名查詢書籍
-function lookup_book(){  
+function lookup_by_name(){  
     var bookname = $("#bookname").val();
     var myURL = "http://localhost:5000/show_book_by_name?book_name="+bookname;
     var content = "";
@@ -116,6 +113,54 @@ function lookup_book(){
     }); 
 }
 
+function lookup_by_type(){
+    var booktype = $("#booktype").val();
+    console.log("type: "+booktype);
+    var myURL = "http://localhost:5000/show_book_by_type?book_type="+booktype;
+    var content = "";
+    
+    $.ajax({
+        url: myURL,
+        type: "GET",
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function(response){
+            console.log("success");
+            
+            for(var i=0; i<response.length; i++){
+                console.log(i+": "+response[i].book_info.name);
+                content += '<div class="col-12 col-sm-6 col-lg-4">';
+                    content += '<div class="single-post-area animated fadeInUpBig" style="animation-delay: ';
+                    content += (100+i*300);
+                    content += 'ms;">';
+                        
+                        content += '<a href="#" class="post-thumbnail"><img src="';
+                        content += response[i].book_info.img;
+                        content += '" alt=""></a>';
+                        
+                        content += '<div class="post-content">';
+                            content += '<div class="post-meta">';
+                                content += '<span>';
+                                content += response[i].book_info.author;
+                                content += '| </span>';
+                                content += '<span>';
+                                content += response[i].book_info.type;
+                                content += '</span>';
+                            content += '</div>';
+                            content += '<span class="post-title">';
+                            content += response[i].book_info.name;
+                            content += '</span>';
+                        content += '</div>';
+                    content += '</div>';
+                content += '</div>';
+            }
+            document.getElementById("show_all_books").innerHTML = content;
+        },
+        error: function(){
+            console.log("error");
+        }
+    }); 
+}
 
 //function get_id(e){
 //    console.log("開始拿ID");

@@ -11,25 +11,25 @@ function login(){
     myURL += "email="+email+"&password="+password;
     console.log("myURL: "+myURL);
     
-//    $.ajax({
-//        url: myURL,
-//        type: "GET",
-//        dataType: "json",
-//        contentType: 'application/json; charset=utf-8',
-//        success: function(response){
-//            console.log("success");
-//            if(response._id == false){//登入失敗
-//                window.alert("帳號/密碼錯誤！");
-//            }
-//            else{//登入成功
-//                console.log("_ID: "+response._id);
-//                sessionStorage.setItem("_id", response._id);
-//                window.location.href='index.html';
-//            }
-//        },
-//        error: function(){
-//            console.log("error");
-//        }
-//    });
+    $.ajax({
+        url: myURL,
+        type: "GET",
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function(response){
+            console.log("success");
+            if(response._id == false){//登入失敗
+                window.alert("帳號/密碼錯誤！");
+            }
+            else{//登入成功
+                console.log("_ID: "+response._id);
+                localStorage.setItem("user_id", response._id);
+                window.location.href='index.html';
+            }
+        },
+        error: function(){
+            console.log("error");
+        }
+    });
     
 }

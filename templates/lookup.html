@@ -40,13 +40,13 @@
                             <a class="nav-link" href="index.html">首頁</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="blog.html">已借出</a>
+                            <a class="nav-link" href="borrowed.html">已借出</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="blog.html">待歸還</a>
+                            <a class="nav-link" href="borrowed.html">待歸還</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="portfolio.html">查詢書籍</a>
+                            <a class="nav-link" href="lookup.html">查詢書籍</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="login.html">登出</a>
@@ -106,7 +106,7 @@
                                                     <input type="text" class="form-control" id="bookname" placeholder="書名">
                                                 </div>
                                             </div>
-                                            <button type="button" class="btn sonar-btn col-12 col-md-2" onclick="lookup_book()">書名查詢</button>
+                                            <button type="button" class="btn sonar-btn col-12 col-md-2" onclick="lookup_by_name()">書名查詢</button>
                                             <div class="col-12 col-md-3"></div>
                                         </div> 
                                         <!-- 依書名查詢 end -->
@@ -117,15 +117,33 @@
                                             <div class="col-12 col-md-4">
                                                 <div class="form-group">
 <!--                                                    <input type="text" class="form-control" id="bookname" placeholder="種類">-->
-                                                    <select class="form-control">
-                                                        <option>種類1</option>
-                                                        <option selected="selected">種類2</option>
-                                                        <option>種類3</option>
-                                                        <option>種類4</option>
+                                                    <select class="form-control" id="booktype">
+                                                        <option selected="selected">文學小說</option>
+                                                        <option>商業理財</option>
+                                                        <option>藝術設計</option>
+                                                        <option>人文史地</option>
+                                                        <option>社會科學</option>
+                                                        <option>自然科普</option>
+                                                        <option>心理勵志</option>
+                                                        <option>醫療保健</option>
+                                                        <option>飲食</option>
+                                                        <option>生活風格</option>
+                                                        <option>旅遊</option>
+                                                        <option>宗教命理</option>
+                                                        <option>親子教養</option>
+                                                        <option>童書/青少年文學</option>
+                                                        <option>影視偶像</option>
+                                                        <option>輕小說</option>
+                                                        <option>漫畫/圖文書</option>
+                                                        <option>語言學習</option>
+                                                        <option>考試用書</option>
+                                                        <option>電腦資訊</option>
+                                                        <option>專業/教科書/政府出版品</option>
+                                                        <option>參考書</option>
                                                     </select>
                                                 </div>
                                             </div>
-                                            <button type="button" class="btn sonar-btn col-12 col-md-2" onclick="lookup_book()">種類查詢</button>
+                                            <button type="button" class="btn sonar-btn col-12 col-md-2" onclick="lookup_by_type()">種類查詢</button>
                                             <div class="col-12 col-md-3"></div>
                                         </div>
                                         <!-- 依種類查詢 end -->

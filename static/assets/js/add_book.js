@@ -49,11 +49,11 @@ function add_book(){
     
     
     
-//    console.log("name: "+data.name);
-//    console.log("author: "+data.author);
-//    console.log("type: "+data.type);
-//    console.log("location: "+data.location);
-//    console.log("img: "+data.img);
+    console.log("name: "+name);
+    console.log("author: "+author);
+    console.log("type: "+type);
+    console.log("location: "+location);
+    console.log("img: "+base64);
     
     if(name!="" && author!="" && type!="" && location!=""){
         var data = {"name" : name, "author" : author, "type" : type, "location" : location, "img" : base64};

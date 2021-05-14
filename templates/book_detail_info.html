@@ -65,7 +65,7 @@
                             <!-- Logo Area  -->
                             <div class="logo-area">
                                 <a href="index.html">Future Library</a>
-                                <h2 style="color: white">編輯書籍</h2>
+                                <h2 style="color: white">書籍管理</h2>
                             </div>
 
                             <div class="menu-content-area d-flex align-items-center">
@@ -82,7 +82,8 @@
         <!-- 主畫面 start -->
         <div class="hero-area">
             <div class="hero-content equalize">
-
+                
+                <!-- 編輯書籍資料 start -->
                 <div class="alime-blog-area section-padding-80-0 mb-70">
                     <div class="container">
                         <div class="row">
@@ -119,6 +120,53 @@
                         </div>
                     </div>
                 </div>
+                <!-- 編輯書籍資料 end -->
+                
+                <!-- 編輯借閱資料 start -->
+                <div class="alime-blog-area section-padding-80-0 mb-70">
+                    <div class="container">
+                        <div class="row">
+                            <div class="contact-form text-center col-12 col-lg-2" style="margin: auto;">
+                                <h5>使用者ID</h5>
+                            </div>
+                            <div class="contact-form text-center col-12 col-lg-2" style="margin: auto;">
+                                <h5>使用者姓名</h5>
+                            </div>
+                            <div class="contact-form text-center col-12 col-lg-2" style="margin: auto;">
+                                <h5>借出日期</h5>
+                            </div>
+                            <div class="contact-form text-center col-12 col-lg-2" style="margin: auto;">
+                                <h5>歸還日期</h5>
+                            </div>
+                            <div class="contact-form text-center col-12 col-lg-3" style="margin: auto;">
+                                <center><button type="button" class="btn sonar-btn" onclick="add_borrow_info()">新增借閱資料</button></center>
+                            </div>
+                        </div>
+                        
+                        <!-- 借閱資料 顯示 start -->
+                        <div>
+                            <div class="row">
+                                <div class="contact-form text-center col-12 col-lg-2" style="margin: auto;">
+                                    <h5>U-00002</h5>
+                                </div>
+                                <div class="contact-form text-center col-12 col-lg-2" style="margin: auto;">
+                                    <h5>cih</h5>
+                                </div>
+                                <div class="contact-form text-center col-12 col-lg-2" style="margin: auto;">
+                                    <h5>110.05.14</h5>
+                                </div>
+                                <div class="contact-form text-center col-12 col-lg-2" style="margin: auto;">
+                                    <h5>none</h5>
+                                </div>
+                                <div class="contact-form text-center col-12 col-lg-3" style="margin: auto;">
+                                    <center><button type="button" class="btn return-btn" onclick="return_book()">還書</button></center>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 借閱資料 顯示 start -->
+                    </div>
+                </div>
+                <!-- 編輯借閱資料 end -->
                 
                 
                 <!-- 下面的線 start -->
