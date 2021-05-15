@@ -14,7 +14,7 @@ def insert_user(role, email, password, name, phone):
         return False
     #取得目前user數量
     user_id = 'U-' + str(_db.USER_COLLECTION.find().count()).zfill(5)
-    userdict={'_id':user_id, 'email':email, 'password':password, 'name':name, 'phone':phone, 'borrowed':[], 'borrowing':[], 'favorite':[]}
+    userdict={'_id':user_id, 'role': role, 'email':email, 'password':password, 'name':name, 'phone':phone, 'borrowed':[], 'borrowing':[], 'favorite':[]}
     _db.USER_COLLECTION.insert_one(userdict)
     return user_id
     
@@ -37,7 +37,7 @@ def update_user_return_book(user_id, book_id):
 
 
 def query_user_by_id(user_id):
-    return _db.USER_COLLECTION.find_one({'_id':user_id}).pretty()
+    return _db.USER_COLLECTION.find_one({'_id':user_id})
     
 def update_user_favorite(user_id, book_id):
     _db.USER_COLLECTION.update({'_id':user_id}, {'$push':{'favorite':book_id}})

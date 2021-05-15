@@ -96,6 +96,7 @@ def add_book():
 #刪除書
 def delete_book():
     book_id=request.values.get('book_id')
+    book.delete_book(book_id)
     return jsonify({'message':'success'})
     
 @library_api.route('show_book_by_id', methods=['get'])
