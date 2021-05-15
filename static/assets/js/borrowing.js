@@ -12,7 +12,7 @@ function start(){
         async: false,
         success: function(response){
             console.log("success get_borrowed");
-            for(var i=0; i<response.borrowed.length; i++){
+            for(var i=0; i<response.borrowing.length; i++){
                 if(i%4 == 0){
                     content += '<div class="row sonar-portfolio">';
                 }
