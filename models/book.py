@@ -20,10 +20,10 @@ def query_all_books_one_page(page, page_num):
     return [{'_id':i['_id'], 'book_info':i['book_info'], 'location':i['location'], 'time':i['time'], 'borrow_infos':i['borrow_infos'], 'returned_time':i['returned_time']} for i in _db.BOOK_COLLECTION.find().skip(page*page_num).limit(page_num)]
     
 def query_book_by_name(book_name):
-    return [{'_id':i['_id'], 'book_info':i['book_info'], 'location':i['location'], 'time':i['time'], 'borrow_infos':i['borrow_infos'], 'returned_time':i['returned_time']} for i in _db.BOOK_COLLECTION.find({'book_info.name':book_name})]
+    return [{'_id':i['_id'], 'book_info':i['book_info'], 'location':i['location'], 'time':i['time'], 'borrow_infos':i['borrow_infos'], 'returned_time':i['returned_time']} for i in _db.BOOK_COLLECTION.find({'book_info.name':{'$regex': '.*'+book_name+'.*'}})]
     
 def query_book_by_name_one_page(book_name, page, page_num):
-    return [{'_id':i['_id'], 'book_info':i['book_info'], 'location':i['location'], 'time':i['time'], 'borrow_infos':i['borrow_infos'], 'returned_time':i['returned_time']} for i in _db.BOOK_COLLECTION.find({'book_info.name':book_name}).skip(page*page_num).limit(page_num)]
+    return [{'_id':i['_id'], 'book_info':i['book_info'], 'location':i['location'], 'time':i['time'], 'borrow_infos':i['borrow_infos'], 'returned_time':i['returned_time']} for i in _db.BOOK_COLLECTION.find({'book_info.name':{'$regex': '.*'+book_name+'.*'}}).skip(page*page_num).limit(page_num)]
     
 def query_book_by_type(book_type):
     return [{'_id':i['_id'], 'book_info':i['book_info'], 'location':i['location'], 'time':i['time'], 'borrow_infos':i['borrow_infos'], 'returned_time':i['returned_time']} for i in _db.BOOK_COLLECTION.find({'book_info.type':book_type})]
@@ -52,7 +52,7 @@ def update_book_return_book(book_id, user_id):
     
 #刪書
 def delete_book(book_id):
-    _db.BOOK_COLLECTION.delete_one({'_id':book_id})
+    _db.BOOK_COLLECTION.delete_many({'_id':book_id})
     
 def update_book_info(book_id, name, author, type):
     _db.BOOK_COLLECTION.update({'_id':book_id}, {'$set':{'book_info.name':name, 'book_info.author':author, 'book_info.type':type}})
