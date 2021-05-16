@@ -41,3 +41,6 @@ def query_user_by_id(user_id):
     
 def update_user_favorite(user_id, book_id):
     _db.USER_COLLECTION.update({'_id':user_id}, {'$push':{'favorite':book_id}})
+
+def delete_user_favorite(user_id, book_id):
+    _db.USER_COLLECTION.update({'_id':user_id}, {'$pull':{'favorite':book_id}})

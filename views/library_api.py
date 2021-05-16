@@ -129,6 +129,14 @@ def edit_user_favorite():
     book_id=request.values.get('book_id')
     user.update_user_favorite(user_id, book_id)
     return jsonify({'message':'success'})
+
+@library_api.route('delete_user_favorite', methods=['get'])
+#編輯使用者書單
+def delete_user_favorite():
+    user_id=request.values.get('user_id')
+    book_id=request.values.get('book_id')
+    user.delete_user_favorite(user_id, book_id)
+    return jsonify({'message':'success'})
     
 @library_api.route('show_user_borrowed', methods=['get'])
 #顯示使用者借過的書
