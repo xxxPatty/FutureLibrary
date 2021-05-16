@@ -134,28 +134,28 @@ def edit_user_favorite():
 #顯示使用者借過的書
 def show_user_borrowed():
     user_id=request.values.get('user_id')
-    book=[]
+    books=[]
     for i in user.query_user_by_id(user_id)['borrowed']:
-        book.append(book.query_book_by_id(i))
-    return jsonify(book)
+        books.append(book.query_book_by_id(i))
+    return jsonify(books)
     
 @library_api.route('show_user_borrowing', methods=['get'])
 #顯示使用者正在借的書
 def show_user_borrowing():
     user_id=request.values.get('user_id')
-    book=[]
+    books=[]
     for i in user.query_user_by_id(user_id)['borrowing']:
-        book.append(book.query_book_by_id(i))
-    return jsonify(book)
+        books.append(book.query_book_by_id(i))
+    return jsonify(books)
     
 @library_api.route('show_user_favorite', methods=['get'])
 #顯示使用者書單
 def show_user_favorite():
     user_id=request.values.get('user_id')
-    book=[]
+    books=[]
     for i in user.query_user_by_id(user_id)['favorite']:
-        book.append(book.query_book_by_id(i))
-    return jsonify(book)
+        books.append(book.query_book_by_id(i))
+    return jsonify(books)
     
 @library_api.route('show_new_book', methods=['get'])
 #新書列表
