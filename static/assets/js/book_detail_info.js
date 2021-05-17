@@ -1,5 +1,7 @@
 var type = ["文學小說", "商業理財", "藝術設計", "人文史地", "社會科學", "自然科普", "心理勵志", "醫療保健", "飲食", "生活風格", "旅遊", "宗教命理", "親子教養", "童書/青少年文學", "影視偶像", "輕小說", "漫畫/圖文書", "語言學習", "考試用書", "電腦資訊", "專業/教科書/政府出版品", "參考書"];
 
+var isreturn;
+
 function start(){
     //編輯書籍內容 start
     var content = "";
@@ -53,33 +55,37 @@ function start(){
             
             document.getElementById("show_original_info").innerHTML = content;
             //輸入框 end
+        //編輯書籍內容 end
             
+            //顯示借閱資料 start
             for(var i=0; i<response.borrow_infos.length; i++){
                 borrow_info_content += '<div class="row">';
-                    borrow_info_content += '<div class="contact-form text-center col-12 col-lg-3" style="margin: auto;">';
+                    borrow_info_content += '<div class="contact-form text-center col-12 col-lg-3" style="margin-top: 17px;">';
                         borrow_info_content += '<h5>';
                         borrow_info_content += response.borrow_infos[i].user_id;
                         borrow_info_content += '</h5>';
                     borrow_info_content += '</div>';
                     
-                    borrow_info_content += '<div class="contact-form text-center col-12 col-lg-3" style="margin: auto;">';
+                    borrow_info_content += '<div class="contact-form text-center col-12 col-lg-3" style="margin-top: 17px;">';
                         borrow_info_content += '<h5>';
                         borrow_info_content += response.borrow_infos[i].borrow_time.from;
                         borrow_info_content += '</h5>';
                     borrow_info_content += '</div>';
                 
-                    borrow_info_content += '<div class="contact-form text-center col-12 col-lg-3" style="margin: auto;">';
+                    borrow_info_content += '<div class="contact-form text-center col-12 col-lg-3" style="margin-top: 17px;">';
                         borrow_info_content += '<h5>';
                         
                         if(i==response.borrow_infos.length-1 && response.returned_time==null){
+                            isreturn = true;
                                     borrow_info_content += response.borrow_infos[i].borrow_time.to;
                                     borrow_info_content += '</h5>';
                             borrow_info_content += '</div>';
                             
-                            borrow_info_content += '<div class="contact-form text-center col-12 col-lg-3" style="margin: auto;">';
+                            borrow_info_content += '<div class="contact-form text-center col-12 col-lg-3" style="margin-top: 17px;">';
                             borrow_info_content += '</div>';
                         }
                         else{//最後一位還沒還
+                            isreturn = false;
                                     borrow_info_content += "應歸還時間為";
                                     borrow_info_content += response.returned_time;
                                     borrow_info_content += '</h5>';
@@ -102,11 +108,9 @@ function start(){
             console.log("error");
         }
     });
-    //編輯書籍內容 end
+    //顯示借閱資料 end
     
-    //借閱資料內容 start
-    
-    //借閱資料內容 end
+    console.log("初始畫面 結束");
 }
 
 $("#book_img_btn").change(function(){
@@ -232,29 +236,55 @@ function return_book(e){
 //    window.location.href = 'book_detail_info.html';
 }
 
+//新增借閱資料（多出一行，供使用者輸入）
 function add_borrow_info(){
+    var today_date = new Date();
+    var year = today_date.getFullYear();
+    var month = today_date.getMonth()+1;//js從0開始取
+    var date = today_date.getDate();
+    
+    if(month<10){
+        month = "0" + month;
+    }
+    if(date<10){
+        date = "0" + date;
+    }
+    
+    var today = year+"-"+month+"-"+date;
+    console.log("today: "+today);
+    
+    console.log("新增借閱資料的input");
     var content = document.getElementById("borrow_info").innerHTML;
     //要幫忙設ID
-//        content += '<div class="row">';
-//            content += '<div class="contact-form text-center col-12 col-lg-2" style="margin: auto;">';
-//                content += '<input type="text" class="form-control" id="name" placeholder="使用者ID">';
-//            content += '</div>';
-//            content += '<div class="contact-form text-center col-12 col-lg-2" style="margin: auto;">';
-//                content += '<input type="text" class="form-control" id="name" placeholder="使用者姓名">';
-//            content += '</div>';
-//            content += '<div class="contact-form text-center col-12 col-lg-2" style="margin: auto;">';
-//                content += '<input type="text" class="form-control" id="name" placeholder="借出日期">';
-//            content += '</div>';
-//            content += '<div class="contact-form text-center col-12 col-lg-2" style="margin: auto;">';
-//                content += '<h5>尚未歸還</h5>';
-//            content += '</div>';
-//            content += '<div class="contact-form text-center col-12 col-lg-3" style="margin: auto;">';
-//                
-//            content += '<center><button type="button" class="btn return-btn" onclick="send_borrow_info()">新增</button></center>';
-//            content += '</div>';
-//        content += '</div>';
-//    
-//    document.getElementById("borrow_info").innerHTML = content;    
+    
+    if(isreturn){
+        content += '<div class="row">';
+            content += '<div class="contact-form text-center col-12 col-lg-3" style="margin: auto;">';
+                content += '<input type="text" class="form-control" id="borrow_info_user_id" placeholder="使用者ID">';
+            content += '</div>';
+            content += '<div class="contact-form text-center col-12 col-lg-3" style="margin: auto;">';
+                content += '<h5>';
+                content += today;
+                content += '</h5>';
+            content += '</div>';
+            content += '<div class="contact-form text-center col-12 col-lg-3" style="margin: auto;">';
+                content += '<h5>尚未歸還（不能填寫）</h5>';
+            content += '</div>';
+            content += '<div class="contact-form text-center col-12 col-lg-3" style="margin: auto;">';
+                content += '<center><button type="button" class="btn return-btn" onclick="send_borrow_info()">新增</button></center>';
+            content += '</div>';
+        content += '</div>';
+        document.getElementById("borrow_info").innerHTML = content;
+    }
+    else{
+        window.alert("書籍尚未歸還，無法借出～");
+    }
+}
+
+function send_borrow_info(){
+    console.log("送出借閱資料到後端");
+    var user_id = $("#borrow_info_user_id").val();
+    console.log("user ID: "+ user_id);
 }
 
 window.addEventListener("load", start, false);
