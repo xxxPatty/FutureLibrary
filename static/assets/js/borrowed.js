@@ -102,6 +102,29 @@ function favorite(id){
         console.log("原本喜歡")
         book.setAttribute("class", "fa fa-heart-o");
         book.style.color = "#FFE4E1";
+        
+        //告訴後端 移出喜歡delete_user_favorite
+        var myURL = "http://localhost:5000/delete_user_favorite?user_id="+localStorage.getItem("user_id")+"&book_id="+id;
+        $.ajax({
+            url: myURL,
+            type: "GET",
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function(response){
+                console.log("success");
+                if(response.message == "success"){//登入失敗
+                    console.log("成功移出我的最愛");
+                }
+                else{//登入成功
+                    console.log("無法移出我的最愛");
+                    window.alert("無法移出我的最愛");
+    //                window.location.href='index.html';
+                }
+            },
+            error: function(){
+                console.log("error");
+            }
+        });
     }
     else{//原本不喜歡
         book.setAttribute("class", "fa fa-heart");
@@ -110,25 +133,25 @@ function favorite(id){
         //告訴後端 加到喜歡
         var myURL = "http://localhost:5000/edit_user_favorite?user_id="+localStorage.getItem("user_id")+"&book_id="+id;
         $.ajax({
-        url: myURL,
-        type: "GET",
-        dataType: "json",
-        contentType: 'application/json; charset=utf-8',
-        success: function(response){
-            console.log("success");
-            if(response.message == "success"){//登入失敗
-                console.log("成功加入我的最愛");
+            url: myURL,
+            type: "GET",
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function(response){
+                console.log("success");
+                if(response.message == "success"){//登入失敗
+                    console.log("成功加入我的最愛");
+                }
+                else{//登入成功
+                    console.log("無法加入我的最愛");
+                    window.alert("無法加入我的最愛");
+    //                window.location.href='index.html';
+                }
+            },
+            error: function(){
+                console.log("error");
             }
-            else{//登入成功
-                console.log("無法加入我的最愛");
-                window.alert("無法加入我的最愛");
-//                window.location.href='index.html';
-            }
-        },
-        error: function(){
-            console.log("error");
-        }
-    });
+        });
     }
 }
 

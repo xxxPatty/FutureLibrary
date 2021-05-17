@@ -3,6 +3,7 @@ var type = ["文學小說", "商業理財", "藝術設計", "人文史地", "社
 function start(){
     //編輯書籍內容 start
     var content = "";
+    var borrow_info_content = "";
     var img_base64 = "";
     var book_id = localStorage.getItem("book_id");
     var myURL = "http://localhost:5000/show_book_by_id?book_id="+book_id;
@@ -52,6 +53,50 @@ function start(){
             
             document.getElementById("show_original_info").innerHTML = content;
             //輸入框 end
+            
+            for(var i=0; i<response.borrow_infos.length; i++){
+                borrow_info_content += '<div class="row">';
+                    borrow_info_content += '<div class="contact-form text-center col-12 col-lg-3" style="margin: auto;">';
+                        borrow_info_content += '<h5>';
+                        borrow_info_content += response.borrow_infos[i].user_id;
+                        borrow_info_content += '</h5>';
+                    borrow_info_content += '</div>';
+                    
+                    borrow_info_content += '<div class="contact-form text-center col-12 col-lg-3" style="margin: auto;">';
+                        borrow_info_content += '<h5>';
+                        borrow_info_content += response.borrow_infos[i].borrow_time.from;
+                        borrow_info_content += '</h5>';
+                    borrow_info_content += '</div>';
+                
+                    borrow_info_content += '<div class="contact-form text-center col-12 col-lg-3" style="margin: auto;">';
+                        borrow_info_content += '<h5>';
+                        
+                        if(i==response.borrow_infos.length-1 && response.returned_time==null){
+                                    borrow_info_content += response.borrow_infos[i].borrow_time.to;
+                                    borrow_info_content += '</h5>';
+                            borrow_info_content += '</div>';
+                            
+                            borrow_info_content += '<div class="contact-form text-center col-12 col-lg-3" style="margin: auto;">';
+                            borrow_info_content += '</div>';
+                        }
+                        else{//最後一位還沒還
+                                    borrow_info_content += "應歸還時間為";
+                                    borrow_info_content += response.returned_time;
+                                    borrow_info_content += '</h5>';
+                            borrow_info_content += '</div>';
+                            
+                            borrow_info_content += '<div class="contact-form text-center col-12 col-lg-3" style="margin: auto;">';
+                                borrow_info_content += '<center><button type="button" class="btn return-btn" onclick="return_book(';
+                                borrow_info_content += "'";
+                                borrow_info_content += response.borrow_infos[i].user_id;
+                                borrow_info_content += "'";
+                                borrow_info_content += ')">還書</button></center>';
+                            borrow_info_content += '</div>';
+                        }
+                    
+                borrow_info_content += '</div>';
+            }
+            document.getElementById("borrow_info").innerHTML = borrow_info_content;
         },
         error: function(){
             console.log("error");
@@ -189,6 +234,7 @@ function return_book(e){
 
 function add_borrow_info(){
     var content = document.getElementById("borrow_info").innerHTML;
+    //要幫忙設ID
 //        content += '<div class="row">';
 //            content += '<div class="contact-form text-center col-12 col-lg-2" style="margin: auto;">';
 //                content += '<input type="text" class="form-control" id="name" placeholder="使用者ID">';

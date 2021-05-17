@@ -12,11 +12,11 @@ function start(){
         contentType: 'application/json; charset=utf-8',
         async: false,
         success: function(response){
-            console.log("success get_borrowing");
+            console.log("success get_favorite");
             for(var i=0; i<response.favorite.length; i++){
                 favorite_book[i] = response.favorite[i];
             }
-            for(var i=0; i<response.borrowing.length; i++){
+            for(var i=0; i<response.favorite.length; i++){
                 if(i%4 == 0){
                     content += '<div class="row sonar-portfolio">';
                 }
@@ -26,8 +26,8 @@ function start(){
                 content += 'ms;">';
                     
                     
-                    var tempURL = "http://localhost:5000/show_book_by_id?book_id="+response.borrowing[i];
-                    console.log("書的ID: "+response.borrowing[i]);
+                    var tempURL = "http://localhost:5000/show_book_by_id?book_id="+response.favorite[i];
+                    console.log("書的ID: "+response.favorite[i]);
                     $.ajax({
                         url: tempURL,
                         type: "GET",
@@ -83,7 +83,7 @@ function start(){
                     content += '</div>';
                 }
             }
-            document.getElementById("show_borrowing_book").innerHTML = content;
+            document.getElementById("show_favorite_book").innerHTML = content;
             console.log("結束～");
         },
         error: function(){
