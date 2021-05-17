@@ -188,7 +188,27 @@ function return_book(e){
 }
 
 function add_borrow_info(){
-    
+    var content = document.getElementById("borrow_info").innerHTML;
+//        content += '<div class="row">';
+//            content += '<div class="contact-form text-center col-12 col-lg-2" style="margin: auto;">';
+//                content += '<input type="text" class="form-control" id="name" placeholder="使用者ID">';
+//            content += '</div>';
+//            content += '<div class="contact-form text-center col-12 col-lg-2" style="margin: auto;">';
+//                content += '<input type="text" class="form-control" id="name" placeholder="使用者姓名">';
+//            content += '</div>';
+//            content += '<div class="contact-form text-center col-12 col-lg-2" style="margin: auto;">';
+//                content += '<input type="text" class="form-control" id="name" placeholder="借出日期">';
+//            content += '</div>';
+//            content += '<div class="contact-form text-center col-12 col-lg-2" style="margin: auto;">';
+//                content += '<h5>尚未歸還</h5>';
+//            content += '</div>';
+//            content += '<div class="contact-form text-center col-12 col-lg-3" style="margin: auto;">';
+//                
+//            content += '<center><button type="button" class="btn return-btn" onclick="send_borrow_info()">新增</button></center>';
+//            content += '</div>';
+//        content += '</div>';
+//    
+//    document.getElementById("borrow_info").innerHTML = content;    
 }
 
 window.addEventListener("load", start, false);
