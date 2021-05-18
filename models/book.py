@@ -48,7 +48,7 @@ def insert_book(img, name, author, type, location):
 #還書
 def update_book_return_book(book_id, user_id):
     count=len(_db.BOOK_COLLECTION.find_one({'_id':book_id})['borrow_infos'])
-    _db.BOOK_COLLECTION.update({'_id':book_id}, {'$set':{'borrow_infos.'+str(count-1)+'.borrow_time.to':datetime.now(), 'returned_time':None}})
+    _db.BOOK_COLLECTION.update({'_id':book_id}, {'$set':{'borrow_infos.'+str(count-1)+'.borrow_time.to':datetime.now().strftime("%Y-%m-%d"), 'returned_time':None}})
     
 #刪書
 def delete_book(book_id):
