@@ -1,3 +1,7 @@
+function start(){
+    localStorage.clear();
+}
+
 function login(){
     console.log("login");
     var myURL= "http://localhost:5000/login?";
@@ -33,3 +37,5 @@ function login(){
     });
     
 }
+
+window.addEventListener("load", start, false);

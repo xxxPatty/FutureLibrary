@@ -1,5 +1,4 @@
 function start(){
-    localStorage.setItem("user_id", "U-00002");
     var user_id = localStorage.getItem("user_id");
     var myURL = "http://localhost:5000/show_user_by_id?user_id="+user_id;
     var content = "";

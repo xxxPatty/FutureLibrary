@@ -1,6 +1,3 @@
-var ngrok="http://30d2abdc6bba.ngrok.io";
-
-
 function start(){
     var content = "";
     

@@ -105,6 +105,59 @@ function start(){
         }
     });
     //顯示圖書館資訊 end
+    
+    //得知使用者身份 start
+    var myURL = "http://localhost:5000/show_user_by_id?user_id="+localStorage.getItem("user_id");
+    var menubar = "";
+    $.ajax({
+        url: myURL,
+        type: "GET",
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function(response){
+            console.log("success");
+            menubar += '<li class="nav-item active">';
+                menubar += '<a class="nav-link" href="index.html">首頁</a>'
+            menubar += '</li>';
+            if(response.role == "admin"){//登入失敗
+                localStorage.setItem("role", "admin");
+                menubar += '<li class="nav-item">';
+                    menubar += '<a class="nav-link" href="book.html">書籍管理</a>';
+                menubar += '</li>';
+                menubar += '<li class="nav-item">';
+                    menubar += '<a class="nav-link" href="add_book.html">新增書籍</a>';
+                menubar += '</li>';
+            }
+            else if((response.role == "user")){//登入成功
+                localStorage.setItem("role", "user");
+                menubar += '<li class="nav-item">';
+                    menubar += '<a class="nav-link" href="borrowed.html">已借出</a>';
+                menubar += '</li>';
+                menubar += '<li class="nav-item">';
+                    menubar += '<a class="nav-link" href="borrowing.html">待歸還</a>';
+                menubar += '</li>';
+                menubar += '<li class="nav-item">';
+                    menubar += '<a class="nav-link" href="favorite.html">我的最愛</a>';
+                menubar += '</li>';
+                menubar += '<li class="nav-item">';
+                    menubar += '<a class="nav-link" href="lookup.html">查詢書籍</a>';
+                menubar += '</li>';
+            }
+            else{
+                menubar += '<li class="nav-item active">';
+                menubar += '<a class="nav-link" href="login.html">登入</a>'
+            menubar += '</li>';
+            }
+            menubar += '<li class="nav-item">';
+                    menubar += '<a class="nav-link" href="login.html">登出</a>';
+                menubar += '</li>';
+            document.getElementById("menubar").innerHTML = menubar;
+        },
+        error: function(){
+            console.log("error");
+        }
+    });
+    //得知使用者身份 end
 }
 
 window.addEventListener("load", start, false);
