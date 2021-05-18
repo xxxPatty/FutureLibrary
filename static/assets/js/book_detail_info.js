@@ -91,8 +91,8 @@ function start(){
                         }
                         else if(i==response.borrow_infos.length-1){//最後一位還沒還
                             isreturn = false;
-                                    borrow_info_content += "應歸還時間為";
-                                    borrow_info_content += response.returned_time;
+//                                    borrow_info_content += "應歸還時間為";
+//                                    borrow_info_content += response.returned_time;
                                     borrow_info_content += '</h5>';
                             borrow_info_content += '</div>';
                             
