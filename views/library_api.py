@@ -48,9 +48,9 @@ def borrow_book():
     book_id=request.values.get('book_id')
     user.update_user_borrow_book(user_id, book_id)
     now=datetime.now()
-    borrow_info_dict={'user_id':user_id, 'borrow_time':{'from': now, 'to': ''}}
+    borrow_info_dict={'user_id':user_id, 'borrow_time':{'from': now.strftime("%Y-%m-%d"), 'to': ''}}
     returned_time=now + timedelta(days=7)
-    book.update_book_borrow_book(book_id, borrow_info_dict, returned_time)
+    book.update_book_borrow_book(book_id, borrow_info_dict, returned_time.strftime("%Y-%m-%d"))
     return jsonify({'message':'success'})
     
 @library_api.route('return_book', methods=['get'])
