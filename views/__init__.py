@@ -7,11 +7,11 @@ Created on Fri Apr 23 22:37:39 2021
 """
 
 from .library_api import library_api
-#from .login_web import login_web
+from .library_web import library_web
 
 
 
-blueprint_prefix = [(library_api, "")]
+blueprint_prefix = [(library_api, ""), (library_web, "")]
 
 
 def register_blueprint(app):
