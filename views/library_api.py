@@ -84,12 +84,12 @@ def show_book_by_type():
 #新增書
 def add_book():
     book_json=request.get_json()
-    img=book_json['img']
+    #img=book_json['img']
     name=book_json['name']
     author=book_json['author']
     type=book_json['type']
     location=book_json['location']
-    book_id=book.insert_book(img, name, author, type, location)
+    book_id=book.insert_book(name, author, type, location)
     return jsonify({'_id':book_id})
     
     
@@ -259,14 +259,3 @@ def read_image():
 
 
 
-#@library_api.route('add_book2', methods=['get'])
-#新增書
-#def add_book2():
-    #book_json=request.get_json()
-    #img=book_json['img']
-    #name=request.values.get('name')
-    #author=request.values.get('author')
-    #type=request.values.get('type')
-    #location=request.values.get('location')
-    #book_id=book.insert_book2(name, author, type, location)
-    #return jsonify({'_id':book_id})

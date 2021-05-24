@@ -37,14 +37,14 @@ def query_book_by_type_one_page(book_type, page, page_num):
 def query_book_by_id(book_id):
     return _db.BOOK_COLLECTION.find_one({'_id':book_id})
 
-def insert_book(img, name, author, type, location):
+def insert_book(name, author, type, location):
     #產生id
     data=_db.BOOK_COLLECTION.find()
     if data.count() != 0:
         book_id='B-'+str(int(data.sort('_id', -1)[0]['_id'].split('-')[1])+1).zfill(5)
     else:
         book_id='B-00000'
-    book_dict={'_id':book_id, 'book_info':{'img':img, 'name':name, 'author':author, 'type':type}, 'location':location, 'time':datetime.now(), 'borrow_infos':[], 'returned_time':None}
+    book_dict={'_id':book_id, 'book_info':{'name':name, 'author':author, 'type':type}, 'location':location, 'time':datetime.now(), 'borrow_infos':[], 'returned_time':None}
     _db.BOOK_COLLECTION.insert(book_dict)
     return book_id
 
