@@ -15,7 +15,3 @@ USER_COLLECTION = DB['User']
 BOOK_COLLECTION = DB['Book']
 LIBRARY_COLLECTION = DB['Library']
 
-#mongodb+srv://Liao:871029@cluster0-sk2jk.mongodb.net
-#mongodb+srv://xxxPatty:881114@mycluster.lbkac.mongodb.net/test
-#mongodb+srv://xxxPatty:881114@mycluster.lbkac.mongodb.net/test?retryWrites=true&w=majority
-#mongodb://localhost:27017/
