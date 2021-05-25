@@ -86,13 +86,13 @@
                 <div class="alime-blog-area section-padding-80-0 mb-70">
                     <div class="container">
                         <div class="row">
-
+                            <form id="add_book_info">
                             <!-- 上傳檔案＆照片顯示 start -->
                             
                                 
                             <!-- 上傳檔案 start -->
                             <div class="col-12 col-lg-6">
-                                <input type="file" id="book_img_btn" accept="image/jpeg, image/png">
+                                <input type="file" name="image" id="book_img_btn" accept="image/jpeg, image/png">
                                 <!-- 上傳檔案 end -->
                                 <div class="single-post-area wow fadeInUpBig" data-wow-delay="100ms" style="width: 400px;">
                                     <!-- Post Thumbnail -->
@@ -106,66 +106,67 @@
                             <!-- 使用者輸入＆新增按鈕 start -->
                             <div class="contact-form text-center col-12 col-lg-4">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="name" placeholder="書名">
+                                    <input type="text" name="book_name" class="form-control" id="name" placeholder="書名">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="author" placeholder="作者">
+                                    <input type="text" name="author" class="form-control" id="author" placeholder="作者">
                                 </div>
                                 <div class="form-group">
-                                    <select class="form-control" id="type">
-                                        <option selected="selected">文學小說</option>
-                                        <option>商業理財</option>
-                                        <option>藝術設計</option>
-                                        <option>人文史地</option>
-                                        <option>社會科學</option>
-                                        <option>自然科普</option>
-                                        <option>心理勵志</option>
-                                        <option>醫療保健</option>
-                                        <option>飲食</option>
-                                        <option>生活風格</option>
-                                        <option>旅遊</option>
-                                        <option>宗教命理</option>
-                                        <option>親子教養</option>
-                                        <option>童書/青少年文學</option>
-                                        <option>影視偶像</option>
-                                        <option>輕小說</option>
-                                        <option>漫畫/圖文書</option>
-                                        <option>語言學習</option>
-                                        <option>考試用書</option>
-                                        <option>電腦資訊</option>
-                                        <option>專業/教科書/政府出版品</option>
-                                        <option>參考書</option>
+                                    <select class="form-control" name="type" id="type">
+                                        <option selected="selected" value="文學小說">文學小說</option>
+                                        <option value="商業理財">商業理財</option>
+                                        <option value="藝術設計">藝術設計</option>
+                                        <option value="人文史地">人文史地</option>
+                                        <option value="社會科學">社會科學</option>
+                                        <option value="自然科普">自然科普</option>
+                                        <option value="心理勵志">心理勵志</option>
+                                        <option value="醫療保健">醫療保健</option>
+                                        <option value="飲食">飲食</option>
+                                        <option value="生活風格">生活風格</option>
+                                        <option value="旅遊">旅遊</option>
+                                        <option value="宗教命理">宗教命理</option>
+                                        <option value="親子教養">親子教養</option>
+                                        <option value="童書/青少年文學">童書/青少年文學</option>
+                                        <option value="影視偶像">影視偶像</option>
+                                        <option value="輕小說">輕小說</option>
+                                        <option value="漫畫/圖文書">漫畫/圖文書</option>
+                                        <option value="語言學習">語言學習</option>
+                                        <option value="考試用書">考試用書</option>
+                                        <option value="電腦資訊">電腦資訊</option>
+                                        <option value="專業/教科書/政府出版品">專業/教科書/政府出版品</option>
+                                        <option value="參考書">參考書</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <select class="form-control" id="location">
-                                        <option selected="selected">文學小說區</option>
-                                        <option>商業理財區</option>
-                                        <option>藝術設計區</option>
-                                        <option>人文史地區</option>
-                                        <option>社會科學區</option>
-                                        <option>自然科普區</option>
-                                        <option>心理勵志區</option>
-                                        <option>醫療保健區</option>
-                                        <option>飲食區</option>
-                                        <option>生活風格區</option>
-                                        <option>旅遊區</option>
-                                        <option>宗教命理區</option>
-                                        <option>親子教養區</option>
-                                        <option>童書/青少年文學區</option>
-                                        <option>影視偶像區</option>
-                                        <option>輕小說區</option>
-                                        <option>漫畫/圖文書區</option>
-                                        <option>語言學習區</option>
-                                        <option>考試用書區</option>
-                                        <option>電腦資訊區</option>
-                                        <option>專業/教科書/政府出版品區</option>
-                                        <option>參考書區</option>
+                                    <select class="form-control" name="location" id="location">
+                                        <option selected="selected" value="">文學小說區</option>
+                                        <option value="商業理財區">商業理財區</option>
+                                        <option value="藝術設計區">藝術設計區</option>
+                                        <option value="人文史地區">人文史地區</option>
+                                        <option value="社會科學區">社會科學區</option>
+                                        <option value="自然科普區">自然科普區</option>
+                                        <option value="心理勵志區">心理勵志區</option>
+                                        <option value="醫療保健區">醫療保健區</option>
+                                        <option value="飲食區">飲食區</option>
+                                        <option value="生活風格區">生活風格區</option>
+                                        <option value="旅遊區">旅遊區</option>
+                                        <option value="宗教命理區">宗教命理區</option>
+                                        <option value="親子教養區">親子教養區</option>
+                                        <option value="童書/青少年文學區">童書/青少年文學區</option>
+                                        <option value="影視偶像區">影視偶像區</option>
+                                        <option value="輕小說區">輕小說區</option>
+                                        <option value="漫畫/圖文書區">漫畫/圖文書區</option>
+                                        <option value="語言學習區">語言學習區</option>
+                                        <option value="考試用書區">考試用書區</option>
+                                        <option value="電腦資訊區">電腦資訊區</option>
+                                        <option value="專業/教科書/政府出版品區">專業/教科書/政府出版品區</option>
+                                        <option value="參考書區">參考書區</option>
                                     </select>
                                 </div>
                                 <button type="button" class="btn sonar-btn" style="float: right;" onclick="add_book()">新增</button>
                             </div>
                             <!-- 使用者輸入＆新增按鈕 end -->
+                            </form>
                             
                         </div>
                     </div>
