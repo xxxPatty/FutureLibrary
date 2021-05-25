@@ -86,27 +86,25 @@
                 <div class="alime-blog-area section-padding-80-0 mb-70">
                     <div class="container">
                         <div class="row">
-                            <form id="add_book_info">
-                            <!-- 上傳檔案＆照片顯示 start -->
-                            
-                                
-                            <!-- 上傳檔案 start -->
-                            <div class="col-12 col-lg-6">
-                                <input type="file" name="image" id="book_img_btn" accept="image/jpeg, image/png">
-                                <!-- 上傳檔案 end -->
-                                <div class="single-post-area wow fadeInUpBig" data-wow-delay="100ms" style="width: 400px;">
-                                    <!-- Post Thumbnail -->
-                                    <a href="#" class="post-thumbnail">
-                                        <img id="book_img" src="../static/img/book_default.png">
-                                    </a>
+                                <!-- 上傳檔案＆照片顯示 start -->
+
+                                <div class="col-12 col-lg-6">
+                                    <input type="file" name="img" id="book_img_btn" accept="image/png">
+
+                                    <div class="single-post-area wow fadeInUpBig" data-wow-delay="100ms" style="width: 400px;">
+
+                                        <a href="#" class="post-thumbnail">
+                                            <img id="book_img" src="../static/img/book_default.png">
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
+                            
                             <!-- 上傳檔案＆照片顯示 end -->
 
                             <!-- 使用者輸入＆新增按鈕 start -->
                             <div class="contact-form text-center col-12 col-lg-4">
                                 <div class="form-group">
-                                    <input type="text" name="book_name" class="form-control" id="name" placeholder="書名">
+                                    <input type="text" name="name" class="form-control" id="name" placeholder="書名">
                                 </div>
                                 <div class="form-group">
                                     <input type="text" name="author" class="form-control" id="author" placeholder="作者">
@@ -166,8 +164,6 @@
                                 <button type="button" class="btn sonar-btn" style="float: right;" onclick="add_book()">新增</button>
                             </div>
                             <!-- 使用者輸入＆新增按鈕 end -->
-                            </form>
-                            
                         </div>
                     </div>
                 </div>

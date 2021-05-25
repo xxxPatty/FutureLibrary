@@ -12,6 +12,16 @@ from models import user, book, library
 import json
 from datetime import datetime, timedelta
 import base64
+from flask import send_from_directory
+import os
+from flask import Flask, flash, request, redirect, url_for
+from werkzeug.utils import secure_filename
+
+UPLOAD_FOLDER = '/Users/cihcih/Documents/GitHub/FutureLibrary/static/img'
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+
+app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 #from flask_security import roles_required, login_required
 
 library_api=Blueprint('library_api', __name__)
@@ -257,18 +267,56 @@ def read_image():
     img_tag = '<img src="data:image/png;base64,{0}">'.format(data_uri)
     return img_tag
 
-
+def allowed_file(filename):
+    return '.' in filename and \
+        filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @library_api.route('add_book2', methods=['post'])
 #新增書
 def add_book2():
-    book_json=request.get_json()
-    img = request.form['img']
-    name = request.form['name']
-    author = request.form['author']
-    type = request.form['type']
-    location = request.form['location']
-    print(img)
-    #book_id =book.insert_book(name, author, type, location)
-    return jsonify({'_id':book_id})
-    
+    # check if the post request has the file part
+    if 'img' not in request.files:
+        flash('No file part')
+        return redirect(request.url)
+    file = request.files['img']
+    # if user does not select file, browser also
+    # submit an empty part without filename
+#    name = request.form['name']
+#    author = request.form['author']
+#    type = request.form['type']
+#    location = request.form['location']
+    if file.filename == '':
+        flash('No selected file')
+        return redirect(request.url)
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        #return jsonify({'_id':'success'})
+#    book_id=book.insert_book(name, author, type, location)
+#    book.upload_book_image(book_id)
+    return jsonify({'_id':'test'})
+
+@library_api.route('add_book3', methods=['post'])
+#將書的img存入目錄
+def add_book3():
+    # check if the post request has the file part
+    if 'img' not in request.files:
+        flash('No file part')
+        return redirect(request.url)
+    file = request.files['img']
+    # if user does not select file, browser also
+    # submit an empty part without filename
+    name = request.values['name']
+    author = request.values['author']
+    type = request.values['type']
+    location = request.values['location']
+    if file.filename == '':
+        flash('No selected file')
+        return redirect(request.url)
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        book_id=book.insert_book(name, author, type, location)
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], book_id+'.png'))
+        return jsonify({'_id':book_id})
+    else:
+        return jsonify({'_id':'falied'})
