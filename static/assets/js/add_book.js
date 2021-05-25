@@ -19,16 +19,6 @@ function readURL(input){
             $("#book_img").attr("src", e.target.result);
             console.log("這是base64？ "+e.target.result);
             base64 = e.target.result;
-//            image = new Image();
-//            image.src = base64;
-//            document.body.appendChild(image);
-//            console.log("照片是: "+image);
-//            var a = document.createElement('a');
-//            var event = new MouseEvent('click');
-//            a.download = '劉耀文.png';
-//            a.href = base64;
-//
-//            a.dispatchEvent(event);
         }
         reader.readAsDataURL(input.files[0]);
       }
@@ -55,43 +45,51 @@ function readURL(input){
 
 function add_book(){
     //API的名稱
-    $.post( "/add_book2", $('#add_book_info').serialize())
-//    var name = $("#name").val();
-//    var author = $("#author").val();
-//    var type = $("#type").val();
-//    var location = $("#location").val();
-//    
-//    
-//    
-//    console.log("name: "+name);
-//    console.log("author: "+author);
-//    console.log("type: "+type);
-//    console.log("location: "+location);
+    var book_id;
+    console.log("照片的部分: "+ document.getElementById("book_img_btn").files[0]);
+    
+    var name = $("#name").val();
+    var author = $("#author").val();
+    var type = $("#type").val();
+    var location = $("#location").val();
+    
+    console.log("name: "+name);
+    console.log("author: "+author);
+    console.log("type: "+type);
+    console.log("location: "+location);
 //    console.log("img: "+base64);
-//    
-//    if(name!="" && author!="" && type!="" && location!=""){
-//        var data = {"name" : name, "author" : author, "type" : type, "location" : location, "img" : base64};
-//        
-//        $.ajax({
-//            url: "http://localhost:5000/add_book",
-//            type: "POST",
-//            dataType: "json",
-//            data: JSON.stringify(data),
-//            contentType: 'application/json; charset=utf-8',
-//            success: function(response){
-//                console.log("success");
+    
+    if(name!="" && author!="" && type!="" && location!=""){
+        var data = {"name" : name, "author" : author, "type" : type, "location" : location, "img" : base64};
+        
+        $.ajax({
+            url: "http://localhost:5000/add_book",
+            type: "POST",
+            dataType: "json",
+            async:false,
+            data: JSON.stringify(data),
+            contentType: 'application/json; charset=utf-8',
+            success: function(response){
+                console.log("success");
+                book_id = response._id+".png";
 //                window.alert("新增成功～");
 //                window.location.href = 'book.html';
-//            },
-//            error: function(){
-//                console.log("error");
-//                window.alert("新增失敗T^T");
-//            }
-//        });
-//    }
-//    else{
-//        window.alert("新增失敗T^T\n資料輸入不全...");
-//    }
+            },
+            error: function(){
+                console.log("error");
+                window.alert("新增失敗T^T");
+            }
+        });
+        
+        let form = new FormData();
+        form.append("img", document.getElementById("book_img_btn").files[0], book_id);
+        fetch('http://127.0.0.1:5000/add_book2', {
+          method: 'POST',
+          body: form,
+        })
+    }
+    else{
+        window.alert("新增失敗T^T\n資料輸入不全...");
+    }
+    
 }
-
-
