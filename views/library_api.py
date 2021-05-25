@@ -259,3 +259,16 @@ def read_image():
 
 
 
+@library_api.route('add_book2', methods=['post'])
+#新增書
+def add_book2():
+    book_json=request.get_json()
+    img = request.form['img']
+    name = request.form['name']
+    author = request.form['author']
+    type = request.form['type']
+    location = request.form['location']
+    print(img)
+    #book_id =book.insert_book(name, author, type, location)
+    return jsonify({'_id':book_id})
+    
