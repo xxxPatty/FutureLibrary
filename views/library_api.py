@@ -12,6 +12,17 @@ from models import user, book, library
 import json
 from datetime import datetime, timedelta
 import base64
+from flask import send_from_directory
+import os
+from flask import Flask, flash, request, redirect, url_for
+from werkzeug.utils import secure_filename
+
+UPLOAD_FOLDER = '/Users/linxiangling/Documents/GitHub/FutureLibrary/static/img'
+ALLOWED_EXTENSIONS = {'png'}
+
+app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
 #from flask_security import roles_required, login_required
 
 library_api=Blueprint('library_api', __name__)
@@ -241,7 +252,7 @@ def show_user_favorite_one_page():
     
     
 @library_api.route('upload_image', methods=['get'])
-#上傳照片
+#上傳照片至mongoDB
 def upload_image():
     book_id=request.values.get('book_id')
     book.upload_book_image(book_id)
@@ -256,19 +267,41 @@ def read_image():
     data_uri = base64.b64encode(image).decode('utf-8')
     img_tag = '<img src="data:image/png;base64,{0}">'.format(data_uri)
     return img_tag
-
-
+    
+#判斷檔案是否合法
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @library_api.route('add_book2', methods=['post'])
-#新增書
+#新增書2
 def add_book2():
-    book_json=request.get_json()
-    img = request.form['img']
     name = request.form['name']
     author = request.form['author']
     type = request.form['type']
     location = request.form['location']
-    print(img)
-    #book_id =book.insert_book(name, author, type, location)
+    book_id=book.insert_book(name, author, type, location)
     return jsonify({'_id':book_id})
     
+@library_api.route('save_book_img', methods=['post'])
+#將書的img存入目錄
+def save_book_img():
+    # check if the post request has the file part
+    if 'img' not in request.files:
+        flash('No file part')
+        return redirect(request.url)
+    file = request.files['img']
+    # if user does not select file, browser also
+    # submit an empty part without filename
+    if file.filename == '':
+        flash('No selected file')
+        return redirect(request.url)
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        return jsonify({'message':'success'})
+    else:
+        return jsonify({'message':'falied'})
+
+    
+
