@@ -17,7 +17,7 @@ import os
 from flask import Flask, flash, request, redirect, url_for
 from werkzeug.utils import secure_filename
 
-UPLOAD_FOLDER = '/Users/linxiangling/Documents/GitHub/FutureLibrary/static/img'
+UPLOAD_FOLDER = '/Users/cihcih/Documents/GitHub/FutureLibrary/static/img'
 ALLOWED_EXTENSIONS = {'png'}
 
 app = Flask(__name__)
@@ -265,8 +265,8 @@ def read_image():
     image=book.read_book_image(book_id)
     
     data_uri = base64.b64encode(image).decode('utf-8')
-    img_tag = '<img src="data:image/png;base64,{0}">'.format(data_uri)
-    return img_tag
+    img_tag = '<img style="width: 400px;" src="data:image/png;base64,{0}">'.format(data_uri)
+    return jsonify({'img': img_tag})
     
 #判斷檔案是否合法
 def allowed_file(filename):
@@ -276,10 +276,11 @@ def allowed_file(filename):
 @library_api.route('add_book2', methods=['post'])
 #新增書2
 def add_book2():
-    name = request.form['name']
-    author = request.form['author']
-    type = request.form['type']
-    location = request.form['location']
+    book_json=request.get_json()
+    name = book_json['name']
+    author = book_json['author']
+    type = book_json['type']
+    location = book_json['location']
     book_id=book.insert_book(name, author, type, location)
     return jsonify({'_id':book_id})
     

@@ -9,7 +9,25 @@ function start(){
     var borrow_info_content = "";
     var img_base64 = "";
     var book_id = localStorage.getItem("book_id");
-    var myURL = "http://localhost:5000/show_book_by_id?book_id="+book_id;
+    var myURL = "http://localhost:5000/read_image?book_id="+book_id;
+    
+    //照片 start
+    $.ajax({
+        url: myURL,
+        type: "GET",
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function(response){
+            document.getElementById("show_book").innerHTML = response.img;
+        },
+        error: function(){
+            console.log("error");
+        }
+    });
+    //照片 end
+    
+    
+    myURL = "http://localhost:5000/show_book_by_id?book_id="+book_id;
     
     $.ajax({
         url: myURL,
@@ -19,12 +37,9 @@ function start(){
         success: function(response){
             console.log("success");
             
-            //照片 start
-            img_base64 += '<img id="book_img" src="';
-            img_base64 += response.book_info.img;
-            img_base64 += '">';
-            document.getElementById("show_book").innerHTML = img_base64;
-            //照片 end
+            
+            
+            
             
             //輸入框 start
             content += '<div class="form-group" style="margin: 40px;">';

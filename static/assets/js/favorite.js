@@ -15,6 +15,19 @@ function start(){
             for(var i=0; i<response.favorite.length; i++){
                 favorite_book[i] = response.favorite[i];
             }
+            if(response.favorite.length==0){
+                content += '<div class="container">';
+                    content += '<div class="row" style="text-align: center; margin-left: 300px;">';
+                        content += '<span style="color: ghostwhite;">還沒有喜歡的唷！<br>趕快去加～</span>';
+                    content += '</div>';
+                    content += '<div class="row" style="align: center; valign=center;">';
+
+                        content += '<img src="../static/img/no_book.png" style="height: 300px; display: block; margin: 0 auto;">';
+                    content += '</div>';
+                
+                    
+                content += '</div>';
+            }
             for(var i=0; i<response.favorite.length; i++){
                 if(i%4 == 0){
                     content += '<div class="row sonar-portfolio">';
@@ -23,9 +36,28 @@ function start(){
                 content += '<div class="col-12 col-lg-3 single_gallery_item landscapes studio animated fadeInUpBig" style="width: 300px; animation-delay: ';
                 content += (100+(i%4)*200);
                 content += 'ms;">';
+                
+                var tempURL = "http://localhost:5000/read_image?book_id="+response.favorite[i];
+                    $.ajax({
+                        url: tempURL,
+                        type: "GET",
+                        dataType: "json",
+                        contentType: 'application/json; charset=utf-8',
+                        async: false,
+                        success: function(data){
+                            console.log("success get book_info");
+                            content += '<a class="gallery-img" href="#">';
+                            content += data.img;
+                            content += '</a>';
+                            
+                        },
+                        error: function(){
+                            console.log("error");
+                        }
+                    });
                     
                     
-                    var tempURL = "http://localhost:5000/show_book_by_id?book_id="+response.favorite[i];
+                    tempURL = "http://localhost:5000/show_book_by_id?book_id="+response.favorite[i];
                     console.log("書的ID: "+response.favorite[i]);
                     $.ajax({
                         url: tempURL,
@@ -35,10 +67,6 @@ function start(){
                         async: false,
                         success: function(data){
                             console.log("success get book_info");
-                            console.log("img: "+data.book_info.img);
-                            content += '<a class="gallery-img" href="#"><img style="height:400px;" src="';
-                            content += data.book_info.img;
-                            content += '" alt=""></a>';
                             
                             content += '<div class="gallery-content">';
                             content += '<h4 style="color: ghostwhite;">';

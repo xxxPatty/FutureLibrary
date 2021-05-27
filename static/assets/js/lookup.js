@@ -5,22 +5,6 @@ var book_img = ["B-00000", "B-00001", "B-00002", "B-00003", "B-00004", "B-00005"
 function show_all_books(){
     console.log("start");
     var content = "";
-//    var book_index=0;
-//    for(book_index=0; book_index<20; book_index++){
-//        var book_url = "http://localhost:5000/read_image?book_id="+book_img[book_index];
-//        $.ajax({
-//        url: book_url,
-//        type: "GET",
-//        dataType: "json",
-//        contentType: 'application/json; charset=utf-8',
-//        success: function(response){
-//            
-//        },
-//        error: function(){
-//            console.log("error");
-//        }
-//    });
-//    }
     
     $.ajax({
         url: "http://localhost:5000/show_all_books",
@@ -37,10 +21,25 @@ function show_all_books(){
                     content += (100+i*300);
                     content += 'ms;">';
                         
-                        content += '<a href="#" class="post-thumbnail"><img src="';
-                        content += response[i].book_info.img;
-//                        content += book_img[i];
-                        content += '" alt=""></a>';
+                        var tempURL = "http://localhost:5000/read_image?book_id="+response[i]._id;
+                
+                        $.ajax({
+                            url: tempURL,
+                            type: "GET",
+                            dataType: "json",
+                            contentType: 'application/json; charset=utf-8',
+                            async: false,
+                            success: function(data){
+                                console.log("success get book_info");
+                                content += '<a class="post-thumbnail" href="#">';
+                                content += data.img;
+                                content += '</a>';
+
+                            },
+                            error: function(){
+                                console.log("error");
+                            }
+                        });
                         
                         content += '<div class="post-content">';
                             content += '<div class="post-meta">';
@@ -90,13 +89,25 @@ function lookup_by_name(){
                     content += (100+i*300);
                     content += 'ms;">';
                         
-                        content += '<a href="#" class="post-thumbnail"><img src="';
-                        content += response[i].book_info.img;
-                        content += '" alt=""></a>';
-                        
-//                        content += '<button class="btn post-catagory" id="';
-//                        content += response[i]._id;
-//                        content += '" style="color: white" onclick="get_id(this)">管理</button>';
+                        var tempURL = "http://localhost:5000/read_image?book_id="+response[i]._id;
+                
+                        $.ajax({
+                            url: tempURL,
+                            type: "GET",
+                            dataType: "json",
+                            contentType: 'application/json; charset=utf-8',
+                            async: false,
+                            success: function(data){
+                                console.log("success get book_info");
+                                content += '<a class="post-thumbnail" href="#">';
+                                content += data.img;
+                                content += '</a>';
+
+                            },
+                            error: function(){
+                                console.log("error");
+                            }
+                        });
                         
                         content += '<div class="post-content">';
                             content += '<div class="post-meta">';
@@ -143,9 +154,25 @@ function lookup_by_type(){
                     content += (100+i*300);
                     content += 'ms;">';
                         
-                        content += '<a href="#" class="post-thumbnail"><img src="';
-                        content += response[i].book_info.img;
-                        content += '" alt=""></a>';
+                        var tempURL = "http://localhost:5000/read_image?book_id="+response[i]._id;
+                
+                        $.ajax({
+                            url: tempURL,
+                            type: "GET",
+                            dataType: "json",
+                            contentType: 'application/json; charset=utf-8',
+                            async: false,
+                            success: function(data){
+                                console.log("success get book_info");
+                                content += '<a class="post-thumbnail" href="#">';
+                                content += data.img;
+                                content += '</a>';
+
+                            },
+                            error: function(){
+                                console.log("error");
+                            }
+                        });
                         
                         content += '<div class="post-content">';
                             content += '<div class="post-meta">';

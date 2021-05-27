@@ -34,7 +34,7 @@ function set(){
 function start(){
     console.log("start");
     //顯示新書 start
-    var content = "";
+    var content = "", myURL, temp_img;
     $.ajax({
         url: "http://localhost:5000/show_new_book",
         type: "GET",
@@ -44,11 +44,25 @@ function start(){
         success: function(response){
             console.log("success");
             for(var i=0; i<response.length; i++){
-                
+                myURL = "http://localhost:5000/read_image?book_id="+response[i]._id;
+                console.log("myURL: "+myURL);
                 content += '<div>';
-                    content += '<img src="';
-                    content += response[i].book_info.img;
-                    content += '" style="height: auto; width: 300px; margin:auto;">';
+                
+                    $.ajax({
+                        url: myURL,
+                        type: "GET",
+                        dataType: "json",
+                        async:false,
+                        contentType: 'application/json; charset=utf-8',
+                        success: function(data){
+                            console.log("success");
+                            temp_img = data.img;
+                        },
+                        error: function(){
+                            console.log("error");
+                        }
+                    });
+                    content += temp_img;
                     content += '<div class="hero-slides-content">';
                         content += '<div class="line"></div>';
                         content += '<h2 style="color: ghostwhite; width:300px; font-size: 20px; font-weight:bold; text-align: center; padding: 10px;">';
@@ -128,7 +142,7 @@ function start(){
                     menubar += '<a class="nav-link" href="add_book.html">新增書籍</a>';
                 menubar += '</li>';
             }
-            else if((response.role == "user")){//登入成功
+            else{//登入成功
                 localStorage.setItem("role", "user");
                 menubar += '<li class="nav-item">';
                     menubar += '<a class="nav-link" href="borrowed.html">已借出</a>';
@@ -143,11 +157,11 @@ function start(){
                     menubar += '<a class="nav-link" href="lookup.html">查詢書籍</a>';
                 menubar += '</li>';
             }
-            else{
-                menubar += '<li class="nav-item active">';
-                menubar += '<a class="nav-link" href="login.html">登入</a>'
-            menubar += '</li>';
-            }
+//            else{
+//                menubar += '<li class="nav-item active">';
+//                menubar += '<a class="nav-link" href="login.html">登入</a>'
+//            menubar += '</li>';
+//            }
             menubar += '<li class="nav-item">';
                     menubar += '<a class="nav-link" href="login.html">登出</a>';
                 menubar += '</li>';

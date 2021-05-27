@@ -11,22 +11,34 @@ function start(){
             
             for(var i=0; i<response.length; i++){
                 console.log(i+": "+response[i].book_info.name);
-//                if(i%3==0){
-//                    content += '<div class="row">';
-//                }
                 content += '<div class="col-12 col-sm-6 col-lg-4">';
-//                    content += '<div class="single-post-area wow fadeInUpBig" data-wow-delay="';
-//                    content += '100';
-//                    content += 'ms" style="width: 300px;">';
                 
                     content += '<div class="single-post-area animated fadeInUpBig" style="animation-delay: ';
                     content += (100+i*300);
                     content += 'ms;">';
                         
-                        content += '<a href="#" class="post-thumbnail"><img src="';
-                        content += response[i].book_info.img;
-                        content += '" alt=""></a>';
+                        content += '<a href="#" class="post-thumbnail">';
+                
+                        var tempURL = "http://localhost:5000/read_image?book_id="+response[i]._id;
+                
+                        $.ajax({
+                            url: tempURL,
+                            type: "GET",
+                            dataType: "json",
+                            contentType: 'application/json; charset=utf-8',
+                            async: false,
+                            success: function(data){
+                                console.log("success get book_info");
+                                
+                                content += data.img;
+
+                            },
+                            error: function(){
+                                console.log("error");
+                            }
+                        });
                         
+                        content += '</a>';
                         content += '<button class="btn post-catagory" id="';
                         content += response[i]._id;
                         content += '" style="color: white" onclick="get_id(this)">管理</button>';
@@ -46,9 +58,6 @@ function start(){
                         content += '</div>';
                     content += '</div>';
                 content += '</div>';
-//                if(i%3==2){
-//                   content += '</div>'; 
-//                }
             }
             document.getElementById("show_all_books").innerHTML = content;
         },
@@ -68,7 +77,9 @@ function add_book(){
 //依書名查詢書籍
 function lookup_book(){  
     var bookname = $("#bookname").val();
+    console.log("bookname: "+bookname);
     var myURL = "http://localhost:5000/show_book_by_name?book_name="+bookname;
+    console.log("url: "+myURL);
     var content = "";
     
     $.ajax({
@@ -86,9 +97,26 @@ function lookup_book(){
                     content += (100+i*300);
                     content += 'ms;">';
                         
-                        content += '<a href="#" class="post-thumbnail"><img src="';
-                        content += response[i].book_info.img;
-                        content += '" alt=""></a>';
+                        
+                        var tempURL = "http://localhost:5000/read_image?book_id="+response[i]._id;
+                
+                        $.ajax({
+                            url: tempURL,
+                            type: "GET",
+                            dataType: "json",
+                            contentType: 'application/json; charset=utf-8',
+                            async: false,
+                            success: function(data){
+                                console.log("success get book_info");
+                                content += '<a class="post-thumbnail" href="#">';
+                                content += data.img;
+                                content += '</a>';
+
+                            },
+                            error: function(){
+                                console.log("error");
+                            }
+                        });
                         
                         content += '<button class="btn post-catagory" id="';
                         content += response[i]._id;

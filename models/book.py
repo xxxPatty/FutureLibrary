@@ -70,7 +70,7 @@ def upload_book_image(book_id):
     #Create an object of GridFs for the above database.
     fs = gridfs.GridFS(_db.DB)
     #define an image object with the location.
-    file = "/Users/linxiangling/Documents/GitHub/FutureLibrary/static/img/"+book_id+".png"
+    file = "/Users/cihcih/Documents/GitHub/FutureLibrary/static/img/"+book_id+".png"
     #file = "../images/"+book_id+".png"
     #Open the image in read-only format.
     with open(file, 'rb') as f:
@@ -84,6 +84,7 @@ def read_book_image(book_id):
     image = file.read()
     #print(image)
     return image
+    
     
 #class Book(Document):
     #meta = {"collection": "Book2"}
